@@ -15,10 +15,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       home: DefaultTabController(
-          length: 3,
+          length: 4,
           child: Scaffold(
             body: TabBarView(
               children: [
+                register(),
                 developer(),
                 interns(),
                 project(),
@@ -27,12 +28,25 @@ class MyApp extends StatelessWidget {
             appBar: AppBar(
               title: Text("Apresentação"),
               bottom: TabBar(tabs: [
+                Tab(icon: Icon(Icons.app_registration)),
                 Tab(icon: Icon(Icons.badge)),
                 Tab(icon: Icon(Icons.pets)),
                 Tab(icon: Icon(Icons.report_rounded))
               ]),
             ),
           )),
+    );
+  }
+
+  Widget register(){
+    return Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Form(
+          key: GlobalKey(),
+          child: Column(
+            children: [TextFormField()],
+          ),
+        ),
     );
   }
 
