@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 
-import 'datesData.dart';
-
 class MenstruationList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Text("Menstruações"),
+          table(),
+        ],
+      ),
+    );
+  }
+
+  Widget table() {
     return DataTable(
       columns: [
         DataColumn(
