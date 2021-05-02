@@ -60,6 +60,7 @@ class NameFormState extends State {
           child: Text("Person who menstruate"),
         ),
         myselfOption(),
+        otherPersonOption(),
       ],
     );
   }
@@ -70,6 +71,15 @@ class NameFormState extends State {
           personOption(true),
           Text("myself"),
         ]
+    );
+  }
+
+  Widget otherPersonOption() {
+    return Row(
+      children: [
+        personOption(false),
+        Text("other person"),
+      ],
     );
   }
 
