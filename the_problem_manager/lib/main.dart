@@ -65,6 +65,9 @@ class MyApp extends StatelessWidget {
         }
         return null;
       },
+      onSaved: (String inValue) {
+        nameData.yourName = inValue;
+      },
       decoration: InputDecoration(
         hintText: "add your name",
         labelText: "Name",
