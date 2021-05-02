@@ -59,9 +59,32 @@ class NameFormState extends State {
           padding: EdgeInsets.all(16.0),
           child: Text("Person who menstruate"),
         ),
+        myselfOption(),
       ],
     );
   }
+
+  Widget myselfOption() {
+    return Row(
+        children: [
+          personOption(true),
+          Text("myself"),
+        ]
+    );
+  }
+
+  Widget personOption(bool value) {
+    return Radio(
+      value: value,
+      groupValue: nameData.samePerson,
+      onChanged: (bool inValue) {
+        setState(() {
+          nameData.samePerson = inValue;
+        });
+      },
+    );
+  }
+
   Widget button() {
     return RaisedButton(
       child: Text("Continue"),
