@@ -44,10 +44,16 @@ class MyApp extends StatelessWidget {
         child: Form(
           key: GlobalKey(),
           child: Column(
-            children: [TextFormField()],
+            children: [
+              yourNameField()
+            ],
           ),
         ),
     );
+  }
+
+  Widget yourNameField() {
+    return TextFormField();
   }
 
   Widget developer(){
