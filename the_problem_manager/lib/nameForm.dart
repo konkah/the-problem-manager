@@ -21,11 +21,13 @@ class NameFormState extends State {
   Widget nameForm() {
     return Form(
       key: formKey,
-      child: Column(
-        children: [
-          yourNameField(),
-          button(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            yourNameField(),
+            button(),
+          ],
+        ),
       ),
     );
   }
