@@ -122,8 +122,26 @@ class NameFormState extends State {
       onPressed: () {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
+          showSuccess();
         }
       },
+    );
+  }
+
+  void showSuccess() {
+    // deprecated: vai sumir da linguagem
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.black,
+        duration: Duration(seconds: 5),
+        content: Text("Information saved successfully!"),
+        action: SnackBarAction(
+          label: "Ok",
+          onPressed: () {
+            print("closed snack bar");
+          },
+        ),
+      )
     );
   }
 }
