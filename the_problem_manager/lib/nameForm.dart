@@ -61,6 +61,7 @@ class NameFormState extends State {
         ),
         myselfOption(),
         otherPersonOption(),
+        otherPersonName(),
       ],
     );
   }
@@ -92,6 +93,26 @@ class NameFormState extends State {
           nameData.samePerson = inValue;
         });
       },
+    );
+  }
+
+  Widget otherPersonName() {
+    return TextFormField(
+      enabled: !nameData.samePerson,
+      keyboardType: TextInputType.name,
+      validator: (String inValue) {
+        if (inValue.length == 0 && !nameData.samePerson) {
+          return "Fill the name of the menstruating person";
+        }
+        return null;
+      },
+      onSaved: (String inValue) {
+        nameData.personName = inValue;
+      },
+      decoration: InputDecoration(
+        hintText: "add person name",
+        labelText: "Person who menstruate",
+      ),
     );
   }
 
