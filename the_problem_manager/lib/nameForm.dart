@@ -25,6 +25,7 @@ class NameFormState extends State {
         child: Column(
           children: [
             yourNameField(),
+            personOptions(),
             button(),
           ],
         ),
@@ -51,6 +52,16 @@ class NameFormState extends State {
     );
   }
 
+  Widget personOptions() {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text("Person who menstruate"),
+        ),
+      ],
+    );
+  }
   Widget button() {
     return RaisedButton(
       child: Text("Continue"),
