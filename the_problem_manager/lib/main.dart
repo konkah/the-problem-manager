@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
-import 'nameData.dart';
+import 'nameForm.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,55 +39,10 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final NameData nameData = NameData();
-
   Widget register() {
     return Padding(
         padding: EdgeInsets.all(16.0),
-        child: nameForm(),
-    );
-  }
-
-  Widget nameForm() {
-    return Form(
-        key: formKey,
-        child: Column(
-          children: [
-            yourNameField(),
-            button(),
-          ],
-        ),
-      );
-  }
-
-  Widget yourNameField() {
-    return TextFormField(
-      keyboardType: TextInputType.name,
-      validator: (String inValue) {
-        if (inValue.length == 0) {
-          return "Please enter your name";
-        }
-        return null;
-      },
-      onSaved: (String inValue) {
-        nameData.yourName = inValue;
-      },
-      decoration: InputDecoration(
-        hintText: "add your name",
-        labelText: "Name",
-      ),
-    );
-  }
-
-  Widget button() {
-    return RaisedButton(
-      child: Text("Continue"),
-      onPressed: () {
-        if (formKey.currentState.validate()) {
-          formKey.currentState.save();
-        }
-      },
+        child: NameForm(),
     );
   }
 
