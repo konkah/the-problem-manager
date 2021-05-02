@@ -43,19 +43,23 @@ class MyApp extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final NameData nameData = NameData();
 
-  Widget register(){
+  Widget register() {
     return Padding(
         padding: EdgeInsets.all(16.0),
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              yourNameField(),
-              button(),
-            ],
-          ),
-        ),
+        child: nameForm(),
     );
+  }
+
+  Widget nameForm() {
+    return Form(
+        key: formKey,
+        child: Column(
+          children: [
+            yourNameField(),
+            button(),
+          ],
+        ),
+      );
   }
 
   Widget yourNameField() {
