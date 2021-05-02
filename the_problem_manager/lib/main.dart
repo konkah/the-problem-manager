@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
+import 'datesForm.dart';
 import 'nameForm.dart';
 
 void main() {
@@ -16,11 +17,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       home: DefaultTabController(
-          length: 4,
+          length: 5,
           child: Scaffold(
             body: TabBarView(
               children: [
                 register(),
+                dates(),
                 developer(),
                 interns(),
                 project(),
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
               title: Text("Apresentação"),
               bottom: TabBar(tabs: [
                 Tab(icon: Icon(Icons.app_registration)),
+                Tab(icon: Icon(Icons.calendar_today_outlined)),
                 Tab(icon: Icon(Icons.badge)),
                 Tab(icon: Icon(Icons.pets)),
                 Tab(icon: Icon(Icons.report_rounded))
@@ -41,8 +44,15 @@ class MyApp extends StatelessWidget {
 
   Widget register() {
     return Padding(
-        padding: EdgeInsets.all(16.0),
-        child: NameForm(),
+      padding: EdgeInsets.all(16.0),
+      child: NameForm(),
+    );
+  }
+
+  Widget dates() {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: DatesForm(),
     );
   }
 
