@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:the_problem_manager/menstruationList.dart';
 
 import 'datesForm.dart';
 import 'nameForm.dart';
@@ -17,12 +18,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       home: DefaultTabController(
-          length: 5,
+          length: 6,
           child: Scaffold(
             body: TabBarView(
               children: [
                 register(),
                 dates(),
+                menstruations(),
                 developer(),
                 interns(),
                 project(),
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
               bottom: TabBar(tabs: [
                 Tab(icon: Icon(Icons.app_registration)),
                 Tab(icon: Icon(Icons.calendar_today_outlined)),
+                Tab(icon: Icon(Icons.list)),
                 Tab(icon: Icon(Icons.badge)),
                 Tab(icon: Icon(Icons.pets)),
                 Tab(icon: Icon(Icons.report_rounded))
@@ -53,6 +56,13 @@ class MyApp extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(16.0),
       child: DatesForm(),
+    );
+  }
+
+  Widget menstruations() {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: MenstruationList(),
     );
   }
 
