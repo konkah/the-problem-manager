@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'The Problem Manager',
+      title: 'TPM',
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
             appBar: AppBar(
-              title: Text("Apresentação"),
+              title: Text("The Problem Manager"),
               bottom: TabBar(tabs: [
                 Tab(icon: Icon(Icons.app_registration)),
                 Tab(icon: Icon(Icons.calendar_today_outlined)),
@@ -117,7 +117,7 @@ class MyApp extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(children: [
-        Text("The Problem Manager" "\n"),
+        Text("Sobre" "\n"),
         Text(
             "A ideia do aplicativo é criar um calendário para cadastrar as datas"
                 " das menstruações, porém seu foco é para as pessoas sem útero."

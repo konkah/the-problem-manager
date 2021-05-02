@@ -42,7 +42,7 @@ class DatesFormState extends State {
         }
 
         if (DateTime.tryParse(inValue) == null) {
-          return "Please enter a valid date or no date";
+          return "coloque uma data válida ou deixe em branco";
         }
 
         return null;
@@ -55,8 +55,8 @@ class DatesFormState extends State {
         datesData.start = DateTime.parse(inValue);
       },
       decoration: InputDecoration(
-        hintText: "add the start date",
-        labelText: "Start",
+        hintText: "dd/mm/yyyy",
+        labelText: "início",
       ),
     );
   }
@@ -70,7 +70,7 @@ class DatesFormState extends State {
         }
 
         if (DateTime.tryParse(inValue) == null) {
-          return "Please enter a valid date or no date";
+          return "coloque uma data válida ou deixe em branco";
         }
 
         return null;
@@ -83,15 +83,15 @@ class DatesFormState extends State {
         datesData.end = DateTime.parse(inValue);
       },
       decoration: InputDecoration(
-        hintText: "add the end date",
-        labelText: "End",
+        hintText: "dd/mm/yyyy",
+        labelText: "fim",
       ),
     );
   }
 
   Widget button() {
     return RaisedButton(
-      child: Text("Continue"),
+      child: Text("salvar"),
       onPressed: () {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
@@ -107,7 +107,7 @@ class DatesFormState extends State {
       SnackBar(
         backgroundColor: Colors.black,
         duration: Duration(seconds: 5),
-        content: Text("Information saved successfully!"),
+        content: Text("Informação salva com sucesso!"),
         action: SnackBarAction(
           label: "Ok",
           onPressed: () {

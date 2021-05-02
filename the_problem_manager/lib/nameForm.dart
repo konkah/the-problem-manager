@@ -38,7 +38,7 @@ class NameFormState extends State {
       keyboardType: TextInputType.name,
       validator: (String inValue) {
         if (inValue.length == 0) {
-          return "Please enter your name";
+          return "campo obrigatório";
         }
         return null;
       },
@@ -46,8 +46,8 @@ class NameFormState extends State {
         nameData.yourName = inValue;
       },
       decoration: InputDecoration(
-        hintText: "add your name",
-        labelText: "Name",
+        hintText: "insira seu nome",
+        labelText: "Seu nome",
       ),
     );
   }
@@ -57,7 +57,7 @@ class NameFormState extends State {
       children: [
         Padding(
           padding: EdgeInsets.all(16.0),
-          child: Text("Person who menstruate"),
+          child: Text("Pessoa que menstrua"),
         ),
         myselfOption(),
         otherPersonOption(),
@@ -70,7 +70,7 @@ class NameFormState extends State {
     return Row(
         children: [
           personOption(true),
-          Text("myself"),
+          Text("sou eu"),
         ]
     );
   }
@@ -79,7 +79,7 @@ class NameFormState extends State {
     return Row(
       children: [
         personOption(false),
-        Text("other person"),
+        Text("outra pessoa"),
       ],
     );
   }
@@ -102,7 +102,7 @@ class NameFormState extends State {
       keyboardType: TextInputType.name,
       validator: (String inValue) {
         if (inValue.length == 0 && !nameData.samePerson) {
-          return "Fill the name of the menstruating person";
+          return "campo obrigatório";
         }
         return null;
       },
@@ -110,15 +110,15 @@ class NameFormState extends State {
         nameData.personName = inValue;
       },
       decoration: InputDecoration(
-        hintText: "add person name",
-        labelText: "Person who menstruate",
+        hintText: "coloque o nome da pessoa",
+        labelText: "pessoa que menstrua",
       ),
     );
   }
 
   Widget button() {
     return RaisedButton(
-      child: Text("Continue"),
+      child: Text("salvar"),
       onPressed: () {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
@@ -134,7 +134,7 @@ class NameFormState extends State {
       SnackBar(
         backgroundColor: Colors.black,
         duration: Duration(seconds: 5),
-        content: Text("Information saved successfully!"),
+        content: Text("Informação salva com sucesso!"),
         action: SnackBarAction(
           label: "Ok",
           onPressed: () {

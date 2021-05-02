@@ -8,10 +8,10 @@ class MenstruationList extends StatelessWidget {
     return DataTable(
       columns: [
         DataColumn(
-          label: Text("start"),
+          label: Text("início"),
         ),
         DataColumn(
-          label: Text("end"),
+          label: Text("fim"),
         ),
       ],
       rows: [
