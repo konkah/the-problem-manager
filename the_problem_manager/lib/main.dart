@@ -50,7 +50,8 @@ class MyApp extends StatelessWidget {
           key: formKey,
           child: Column(
             children: [
-              yourNameField()
+              yourNameField(),
+              button(),
             ],
           ),
         ),
@@ -73,6 +74,17 @@ class MyApp extends StatelessWidget {
         hintText: "add your name",
         labelText: "Name",
       ),
+    );
+  }
+
+  Widget button() {
+    return RaisedButton(
+      child: Text("Continue"),
+      onPressed: () {
+        if (formKey.currentState.validate()) {
+          formKey.currentState.save();
+        }
+      },
     );
   }
 
