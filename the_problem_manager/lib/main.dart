@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
+import 'nameData.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -37,6 +39,8 @@ class MyApp extends StatelessWidget {
           )),
     );
   }
+
+  final NameData nameData = NameData();
 
   Widget register(){
     return Padding(
