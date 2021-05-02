@@ -3,6 +3,7 @@ import 'package:flutter/painting.dart';
 import 'package:the_problem_manager/menstruationList.dart';
 
 import 'datesForm.dart';
+import 'firstScreen.dart';
 import 'nameForm.dart';
 
 void main() {
@@ -18,10 +19,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       home: DefaultTabController(
-          length: 4,
+          length: 5,
+          initialIndex: 1,
           child: Scaffold(
             body: TabBarView(
               children: [
+                firstScreen(),
                 register(),
                 dates(),
                 menstruations(),
@@ -31,6 +34,7 @@ class MyApp extends StatelessWidget {
             appBar: AppBar(
               title: Text("The Problem Manager"),
               bottom: TabBar(tabs: [
+                Tab(icon: Icon(Icons.av_timer)),
                 Tab(icon: Icon(Icons.app_registration)),
                 Tab(icon: Icon(Icons.calendar_today_outlined)),
                 Tab(icon: Icon(Icons.list)),
@@ -38,6 +42,13 @@ class MyApp extends StatelessWidget {
               ]),
             ),
           )),
+    );
+  }
+
+  Widget firstScreen() {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: FirstScreen(),
     );
   }
 
