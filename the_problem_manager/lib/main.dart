@@ -59,6 +59,10 @@ class MyApp extends StatelessWidget {
   Widget yourNameField() {
     return TextFormField(
       keyboardType: TextInputType.name,
+      decoration: InputDecoration(
+        hintText: "add your name",
+        labelText: "Name",
+      ),
     );
   }
 
