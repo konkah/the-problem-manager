@@ -26,6 +26,11 @@ class NameFormState extends State {
           children: [
             Text("Dados das pessoas"),
             yourNameField(),
+            Divider(),
+            Text("Usuário"),
+            Divider(),
+            Divider(),
+            Text("Pessoa que menstrua:", textAlign: TextAlign.left,),
             personOptions(),
             button(),
           ],
@@ -56,10 +61,6 @@ class NameFormState extends State {
   Widget personOptions() {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Text("Pessoa que menstrua"),
-        ),
         myselfOption(),
         otherPersonOption(),
         otherPersonName(),
