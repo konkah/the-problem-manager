@@ -37,23 +37,12 @@ class DatesFormState extends State {
   Widget startField() {
     return TextFormField(
       keyboardType: TextInputType.datetime,
-      validator: (String inValue) {
-        if (inValue.length == 0) {
-          return null;
-        }
-
-        if (DateTime.tryParse(inValue) == null) {
-          return "coloque uma data válida ou deixe em branco";
-        }
-
-        return null;
-      },
       onSaved: (String inValue) {
         if (inValue.length == 0) {
           return null;
         }
 
-        datesData.start = DateTime.parse(inValue);
+        datesData.start = inValue;
       },
       decoration: InputDecoration(
         hintText: "dd/mm/yyyy",
@@ -65,23 +54,12 @@ class DatesFormState extends State {
   Widget endField() {
     return TextFormField(
       keyboardType: TextInputType.datetime,
-      validator: (String inValue) {
-        if (inValue.length == 0) {
-          return null;
-        }
-
-        if (DateTime.tryParse(inValue) == null) {
-          return "coloque uma data válida ou deixe em branco";
-        }
-
-        return null;
-      },
       onSaved: (String inValue) {
         if (inValue.length == 0) {
           return null;
         }
 
-        datesData.end = DateTime.parse(inValue);
+        datesData.end = inValue;
       },
       decoration: InputDecoration(
         hintText: "dd/mm/yyyy",
