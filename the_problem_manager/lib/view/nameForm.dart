@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'nameData.dart';
+import '../model/nameModel.dart';
 
 class NameForm extends StatefulWidget {
   @override
@@ -16,7 +16,7 @@ class NameFormState extends State {
   }
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  NameData nameData = NameData();
+  NameModel nameModel = NameModel();
 
   Widget nameForm() {
     return Form(
@@ -49,7 +49,7 @@ class NameFormState extends State {
         return null;
       },
       onSaved: (String inValue) {
-        nameData.yourName = inValue;
+        nameModel.yourName = inValue;
       },
       decoration: InputDecoration(
         hintText: "insira seu nome",
@@ -89,10 +89,10 @@ class NameFormState extends State {
   Widget personOption(bool value) {
     return Radio(
       value: value,
-      groupValue: nameData.samePerson,
+      groupValue: nameModel.samePerson,
       onChanged: (bool inValue) {
         setState(() {
-          nameData.samePerson = inValue;
+          nameModel.samePerson = inValue;
         });
       },
     );
@@ -100,16 +100,16 @@ class NameFormState extends State {
 
   Widget otherPersonName() {
     return TextFormField(
-      enabled: !nameData.samePerson,
+      enabled: !nameModel.samePerson,
       keyboardType: TextInputType.name,
       validator: (String inValue) {
-        if (inValue.length == 0 && !nameData.samePerson) {
+        if (inValue.length == 0 && !nameModel.samePerson) {
           return "campo obrigatório";
         }
         return null;
       },
       onSaved: (String inValue) {
-        nameData.personName = inValue;
+        nameModel.personName = inValue;
       },
       decoration: InputDecoration(
         hintText: "coloque o nome da pessoa",
@@ -119,7 +119,7 @@ class NameFormState extends State {
   }
 
   Widget button() {
-    return RaisedButton(
+    return ElevatedButton(
       child: Text("salvar"),
       onPressed: () {
         if (formKey.currentState.validate()) {

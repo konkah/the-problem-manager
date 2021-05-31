@@ -1,4 +1,4 @@
-class DatesData {
+class DatesModel {
   String start;
   String end;
 }

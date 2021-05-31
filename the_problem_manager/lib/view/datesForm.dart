@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'datesData.dart';
+import '../model/datesModel.dart';
 
 class DatesForm extends StatefulWidget {
   @override
@@ -16,7 +16,7 @@ class DatesFormState extends State {
   }
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  DatesData datesData = DatesData();
+  DatesModel datesForm = DatesModel();
 
   Widget nameForm() {
     return Form(
@@ -42,7 +42,7 @@ class DatesFormState extends State {
           return null;
         }
 
-        datesData.start = inValue;
+        datesForm.start = inValue;
       },
       decoration: InputDecoration(
         hintText: "dd/mm/yyyy",
@@ -59,7 +59,7 @@ class DatesFormState extends State {
           return null;
         }
 
-        datesData.end = inValue;
+        datesForm.end = inValue;
       },
       decoration: InputDecoration(
         hintText: "dd/mm/yyyy",
@@ -69,7 +69,7 @@ class DatesFormState extends State {
   }
 
   Widget button() {
-    return RaisedButton(
+    return ElevatedButton(
       child: Text("salvar"),
       onPressed: () {
         if (formKey.currentState.validate()) {

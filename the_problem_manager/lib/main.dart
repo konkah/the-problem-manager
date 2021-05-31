@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:the_problem_manager/menstruationList.dart';
+import 'package:the_problem_manager/view/menstruationList.dart';
 
-import 'datesForm.dart';
-import 'firstScreen.dart';
-import 'nameForm.dart';
+import 'view/datesForm.dart';
+import 'view/firstScreen.dart';
+import 'view/nameForm.dart';
 
 void main() {
   runApp(MyApp());
