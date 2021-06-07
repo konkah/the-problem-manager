@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_problem_manager/logic/manage_db/manage_db_bloc.dart';
+import 'package:the_problem_manager/logic/manage_db/manage_db_event.dart';
 
-import '../model/datesModel.dart';
+import '../model/dates.dart';
 
 class DatesForm extends StatefulWidget {
   @override
@@ -16,7 +19,7 @@ class DatesFormState extends State {
   }
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  DatesModel datesForm = DatesModel();
+  Dates datesForm = Dates();
 
   Widget nameForm() {
     return Form(
@@ -74,6 +77,10 @@ class DatesFormState extends State {
       onPressed: () {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
+
+          BlocProvider.of<ManageBloc>(context)
+            .add(SubmitEvent(dates: datesForm));
+
           showSuccess();
         }
       },
@@ -81,8 +88,7 @@ class DatesFormState extends State {
   }
 
   void showSuccess() {
-    // deprecated: vai sumir da linguagem
-    Scaffold.of(context).showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.black,
         duration: Duration(seconds: 5),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../model/nameModel.dart';
+import '../model/names.dart';
 
 class NameForm extends StatefulWidget {
   @override
@@ -16,7 +16,7 @@ class NameFormState extends State {
   }
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  NameModel nameModel = NameModel();
+  Names names = Names();
 
   Widget nameForm() {
     return Form(
@@ -49,7 +49,7 @@ class NameFormState extends State {
         return null;
       },
       onSaved: (String inValue) {
-        nameModel.yourName = inValue;
+        names.yourName = inValue;
       },
       decoration: InputDecoration(
         hintText: "insira seu nome",
@@ -89,10 +89,10 @@ class NameFormState extends State {
   Widget personOption(bool value) {
     return Radio(
       value: value,
-      groupValue: nameModel.samePerson,
+      groupValue: names.samePerson,
       onChanged: (bool inValue) {
         setState(() {
-          nameModel.samePerson = inValue;
+          names.samePerson = inValue;
         });
       },
     );
@@ -100,16 +100,16 @@ class NameFormState extends State {
 
   Widget otherPersonName() {
     return TextFormField(
-      enabled: !nameModel.samePerson,
+      enabled: !names.samePerson,
       keyboardType: TextInputType.name,
       validator: (String inValue) {
-        if (inValue.length == 0 && !nameModel.samePerson) {
+        if (inValue.length == 0 && !names.samePerson) {
           return "campo obrigatório";
         }
         return null;
       },
       onSaved: (String inValue) {
-        nameModel.personName = inValue;
+        names.personName = inValue;
       },
       decoration: InputDecoration(
         hintText: "coloque o nome da pessoa",
@@ -131,8 +131,7 @@ class NameFormState extends State {
   }
 
   void showSuccess() {
-    // deprecated: vai sumir da linguagem
-    Scaffold.of(context).showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.black,
         duration: Duration(seconds: 5),

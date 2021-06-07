@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_problem_manager/logic/monitor_db/monitor_db_bloc.dart';
 import 'package:the_problem_manager/view/menstruationList.dart';
 
+import 'logic/manage_db/manage_db_bloc.dart';
 import 'view/datesForm.dart';
 import 'view/firstScreen.dart';
 import 'view/nameForm.dart';
@@ -19,29 +22,40 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       home: DefaultTabController(
-          length: 5,
-          initialIndex: 1,
-          child: Scaffold(
-            body: TabBarView(
-              children: [
-                firstScreen(),
-                register(),
-                dates(),
-                menstruations(),
-                project(),
-              ],
-            ),
-            appBar: AppBar(
-              title: Text("The Problem Manager"),
-              bottom: TabBar(tabs: [
-                Tab(icon: Icon(Icons.av_timer)),
-                Tab(icon: Icon(Icons.app_registration)),
-                Tab(icon: Icon(Icons.calendar_today_outlined)),
-                Tab(icon: Icon(Icons.list)),
-                Tab(icon: Icon(Icons.report_rounded))
-              ]),
-            ),
-          )),
+        length: 5,
+        initialIndex: 1,
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => MonitorBloc()),
+            BlocProvider(create: (_) => ManageBloc()),
+          ],
+          child: buildScreen(),
+        )
+      ),
+    );
+  }
+
+  Scaffold buildScreen() {
+    return Scaffold(
+      body: TabBarView(
+        children: [
+          firstScreen(),
+          register(),
+          dates(),
+          menstruations(),
+          project(),
+        ],
+      ),
+      appBar: AppBar(
+        title: Text("The Problem Manager"),
+        bottom: TabBar(tabs: [
+          Tab(icon: Icon(Icons.av_timer)),
+          Tab(icon: Icon(Icons.app_registration)),
+          Tab(icon: Icon(Icons.calendar_today_outlined)),
+          Tab(icon: Icon(Icons.list)),
+          Tab(icon: Icon(Icons.report_rounded))
+        ]),
+      ),
     );
   }
 
