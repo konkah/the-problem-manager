@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:the_problem_manager/logic/monitor_db/monitor_db_event.dart';
-import 'package:the_problem_manager/logic/monitor_db/monitor_db_state.dart';
+import 'package:the_problem_manager/controller/monitor_db/monitor_db_event.dart';
+import 'package:the_problem_manager/controller/monitor_db/monitor_db_state.dart';
 import 'package:the_problem_manager/model/DatabaseHelper.dart';
 import 'package:the_problem_manager/model/dates.dart';
 
