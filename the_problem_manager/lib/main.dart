@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_problem_manager/controller/manage_db/manage_db_state.dart';
-import 'package:the_problem_manager/controller/monitor_db/monitor_db_bloc.dart';
+import 'package:the_problem_manager/controller/local/manage_db/manage_db_state.dart';
+import 'package:the_problem_manager/controller/local/monitor_db/monitor_db_bloc.dart';
 import 'package:the_problem_manager/view/menstruationList.dart';
 
-import 'controller/manage_db/manage_db_bloc.dart';
+import 'controller/local/manage_db/manage_db_bloc.dart';
 import 'view/datesForm.dart';
 import 'view/firstScreen.dart';
 import 'view/nameForm.dart';

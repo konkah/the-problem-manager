@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:the_problem_manager/controller/monitor_db/monitor_db_event.dart';
-import 'package:the_problem_manager/controller/monitor_db/monitor_db_state.dart';
-import 'package:the_problem_manager/model/DatabaseHelper.dart';
+import 'package:the_problem_manager/controller/local/monitor_db/monitor_db_event.dart';
+import 'package:the_problem_manager/controller/local/monitor_db/monitor_db_state.dart';
+import 'package:the_problem_manager/model/DatabaseLocalServer.dart';
 import 'package:the_problem_manager/model/dates.dart';
 
 class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
@@ -13,7 +13,7 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
     add(AskNewList());
 
     _subscription =
-      DatabaseHelper.helper.stream.listen((response) {
+      DatabaseLocalServer.helper.stream.listen((response) {
         List<Dates> datesList = response;
         add(UpdateList(datesList: datesList));
       });
@@ -22,7 +22,7 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   @override
   Stream<MonitorState> mapEventToState(MonitorEvent event) async* {
     if (event is AskNewList) {
-      var response = await DatabaseHelper.helper.getDatesList();
+      var response = await DatabaseLocalServer.helper.getDatesList();
       List<Dates> datesList = response;
       yield MonitorState(datesList: datesList);
     } else if (event is UpdateList) {

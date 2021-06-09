@@ -1,4 +1,4 @@
-import 'package:the_problem_manager/model/DatabaseHelper.dart';
+import 'package:the_problem_manager/model/DatabaseLocalServer.dart';
 
 class Names {
   int id = 0;
@@ -8,17 +8,17 @@ class Names {
 
   Map<String, Object> toMap() {
     return {
-      DatabaseHelper.namesColYourName: yourName,
-      DatabaseHelper.namesColPersonName: personName,
-      DatabaseHelper.namesColSamePerson: samePerson,
+      DatabaseLocalServer.namesColYourName: yourName,
+      DatabaseLocalServer.namesColPersonName: personName,
+      DatabaseLocalServer.namesColSamePerson: samePerson,
     };
   }
 
   Names.fromMap(map) {
-    this.id = map[DatabaseHelper.namesColId];
-    this.yourName = map[DatabaseHelper.namesColYourName];
-    this.personName = map[DatabaseHelper.namesColPersonName];
-    this.samePerson = map[DatabaseHelper.namesColSamePerson];
+    this.id = map[DatabaseLocalServer.namesColId];
+    this.yourName = map[DatabaseLocalServer.namesColYourName];
+    this.personName = map[DatabaseLocalServer.namesColPersonName];
+    this.samePerson = map[DatabaseLocalServer.namesColSamePerson];
   }
 
   Names();

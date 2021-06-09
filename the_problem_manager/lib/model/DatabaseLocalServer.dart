@@ -5,9 +5,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:the_problem_manager/model/dates.dart';
 
-class DatabaseHelper {
-  static DatabaseHelper helper = DatabaseHelper._createInstance();
-  DatabaseHelper._createInstance();
+class DatabaseLocalServer {
+  static DatabaseLocalServer helper = DatabaseLocalServer._createInstance();
+  DatabaseLocalServer._createInstance();
 
   static Database _database;
   Future<Database> get database async {
@@ -46,7 +46,7 @@ class DatabaseHelper {
   static String namesColPersonName = "personName";
   static String namesColSamePerson = "samePerson";
 
-  getDatesList() async {
+  Future<List<Dates>> getDatesList() async {
     Database db = await this.database;
 
     var datesMapList = await db.query(datesTable);
@@ -54,7 +54,7 @@ class DatabaseHelper {
     return datesMapList.map((e) => Dates.fromMap(e)).toList();
   }
 
-  insertDates(Dates model) async {
+  Future<int> insertDates(Dates model) async {
     Database db = await this.database;
 
     var id = await db.insert(datesTable, model.toMap());
@@ -64,7 +64,7 @@ class DatabaseHelper {
     return id;
   }
 
-  updateDates(Dates model) async {
+  Future<int> updateDates(Dates model) async {
     Database db = await this.database;
 
     var id = await db.update(
@@ -79,7 +79,7 @@ class DatabaseHelper {
     return id;
   }
 
-  deleteDates(int id) async {
+  Future<int> deleteDates(int id) async {
     Database db = await this.database;
 
     var result = await db.delete(

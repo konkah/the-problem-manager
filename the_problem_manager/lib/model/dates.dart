@@ -1,4 +1,4 @@
-import 'package:the_problem_manager/model/DatabaseHelper.dart';
+import 'package:the_problem_manager/model/DatabaseLocalServer.dart';
 
 class Dates {
   int id = 0;
@@ -7,15 +7,15 @@ class Dates {
 
   Map<String, dynamic> toMap() {
     return {
-      DatabaseHelper.datesColStart: start,
-      DatabaseHelper.datesColEnd: end,
+      DatabaseLocalServer.datesColStart: start,
+      DatabaseLocalServer.datesColEnd: end,
     };
   }
 
   Dates.fromMap(map) {
-    this.id = map[DatabaseHelper.datesColId];
-    this.start = map[DatabaseHelper.datesColStart];
-    this.end = map[DatabaseHelper.datesColEnd];
+    this.id = map[DatabaseLocalServer.datesColId];
+    this.start = map[DatabaseLocalServer.datesColStart];
+    this.end = map[DatabaseLocalServer.datesColEnd];
   }
 
   Dates();
