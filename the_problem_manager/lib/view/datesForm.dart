@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_problem_manager/controller/local/manage_db/manage_db_bloc.dart';
-import 'package:the_problem_manager/controller/local/manage_db/manage_db_event.dart';
+import 'package:the_problem_manager/controller/remote/manage_db/manage_db_state.dart';
+import 'package:the_problem_manager/controller/remote/manage_db/manage_db_bloc.dart';
+import 'package:the_problem_manager/controller/remote/manage_db/manage_db_event.dart';
+import 'package:the_problem_manager/helper/date.dart';
 
 import '../model/dates.dart';
 
@@ -24,31 +26,47 @@ class DatesFormState extends State {
   Widget nameForm() {
     return Form(
       key: formKey,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text("Cadastrar mentruação"),
-            startField(),
-            endField(),
-            button(),
-          ],
+      child: BlocListener<ManageBloc, ManageState>(
+        listener: (context, state) {
+          formKey.currentState.reset();
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text("Cadastrar mentruação"),
+              startField(),
+              endField(),
+              button(),
+            ],
+          ),
         ),
       ),
     );
   }
 
+  String dateValidator(String inValue) {
+    try
+    {
+      DateTime date = Date.parse(inValue);
+      String text = Date.format(date);
+
+      if (inValue == text)
+        return null;
+    }
+    catch (Exception) { }
+
+    return "Data inválida";
+  }
+
   Widget startField() {
     return TextFormField(
       keyboardType: TextInputType.datetime,
+      validator: this.dateValidator,
       onSaved: (String inValue) {
-        if (inValue.length == 0) {
-          return null;
-        }
-
-        datesForm.start = inValue;
+        datesForm.start = Date.parse(inValue);
       },
       decoration: InputDecoration(
-        hintText: "dd/mm/yyyy",
+        hintText: Date.pattern,
         labelText: "início",
       ),
     );
@@ -57,15 +75,12 @@ class DatesFormState extends State {
   Widget endField() {
     return TextFormField(
       keyboardType: TextInputType.datetime,
+      validator: this.dateValidator,
       onSaved: (String inValue) {
-        if (inValue.length == 0) {
-          return null;
-        }
-
-        datesForm.end = inValue;
+        datesForm.end = Date.parse(inValue);
       },
       decoration: InputDecoration(
-        hintText: "dd/mm/yyyy",
+        hintText: Date.pattern,
         labelText: "fim",
       ),
     );

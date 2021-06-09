@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.konkah.the_problem_manager">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
+        android:usesCleartextTraffic="true"
         android:label="the_problem_manager"
         android:icon="@mipmap/ic_launcher">
         <activity

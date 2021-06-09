@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_problem_manager/controller/local/manage_db/manage_db_state.dart';
-import 'package:the_problem_manager/controller/local/monitor_db/monitor_db_bloc.dart';
-import 'package:the_problem_manager/view/menstruationList.dart';
 
-import 'controller/local/manage_db/manage_db_bloc.dart';
+import 'controller/remote/manage_db/manage_db_state.dart';
+import 'controller/remote/manage_db/manage_db_bloc.dart';
+import 'controller/remote/monitor_db/monitor_db_bloc.dart';
+import 'view/menstruationList.dart';
 import 'view/datesForm.dart';
 import 'view/firstScreen.dart';
 import 'view/nameForm.dart';
@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
             firstScreen(),
             register(),
             dates(),
-            menstruations(),
+            menstruationList(),
             project(),
           ],
         ),
@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Widget menstruations() {
+  Widget menstruationList() {
     return Padding(
       padding: EdgeInsets.all(16.0),
       child: MenstruationList(),
@@ -179,9 +179,7 @@ class MyApp extends StatelessWidget {
         content: Text(message),
         action: SnackBarAction(
           label: "Ok",
-          onPressed: () {
-            print("closed snack bar");
-          },
+          onPressed: () { },
         ),
       )
     );
