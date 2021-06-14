@@ -25,18 +25,38 @@ class RegistrationFormState extends State {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Text("Cadastro"),
+            title("Cadastro"),
+            divider(),
             yourNameField(),
-            Divider(),
-            Text("Pessoa que menstrua:"),
-            personOptions(),
             emailField(),
             passwordField(),
             retypePasswordField(),
+            divider(),
+            title("sobre a pessoa que menstrua..."),
+            divider(),
+            personOptions(),
             button(),
           ],
         ),
       ),
+    );
+  }
+
+  Text title(String message) {
+    return Text(message,
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.green,
+      ),
+    );
+  }
+
+  Divider divider() {
+    return Divider(
+      thickness: 5,
+      color: Colors.greenAccent,
+      height: 30,
     );
   }
 
@@ -48,8 +68,8 @@ class RegistrationFormState extends State {
         registration.yourName = inValue;
       },
       decoration: InputDecoration(
-        hintText: "insira seu nome",
-        labelText: "Nome do usuário",
+        hintText: "como quer te chamemos?",
+        labelText: "nome que prefere que te chamem",
       ),
     );
   }
@@ -57,25 +77,18 @@ class RegistrationFormState extends State {
   Widget personOptions() {
     return Column(
       children: [
-        myselfOption(),
-        otherPersonOption(),
+        options(),
         otherPersonName(),
       ],
     );
   }
 
-  Widget myselfOption() {
+  Widget options() {
     return Row(
-        children: [
-          personOption(true),
-          Text("sou eu"),
-        ]
-    );
-  }
-
-  Widget otherPersonOption() {
-    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        personOption(true),
+        Text("sou eu"),
         personOption(false),
         Text("outra pessoa"),
       ],
@@ -108,8 +121,8 @@ class RegistrationFormState extends State {
         registration.personName = inValue;
       },
       decoration: InputDecoration(
-        hintText: "insira o nome da pessoa que menstrua",
-        labelText: "Nome da pessoa",
+        hintText: "quem você vai presentear com chocolate?",
+        labelText: "nome da pessoa",
       ),
     );
   }
@@ -123,7 +136,7 @@ class RegistrationFormState extends State {
       },
       decoration: InputDecoration(
         hintText: "email@domain.com",
-        labelText: "E-mail",
+        labelText: "e-mail",
       ),
     );
   }
@@ -140,7 +153,7 @@ class RegistrationFormState extends State {
         password = inValue;
       },
       decoration: InputDecoration(
-        labelText: "Senha",
+        labelText: "senha",
       ),
     );
   }
@@ -156,7 +169,7 @@ class RegistrationFormState extends State {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Redigite a Senha",
+        labelText: "redigite a senha",
       ),
     );
   }
