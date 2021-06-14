@@ -1,4 +1,4 @@
-class Names {
+class Registration {
   int id = 0;
   String yourName = "";
   String personName = "";
@@ -16,7 +16,7 @@ class Names {
     };
   }
 
-  Names.fromMap(map) {
+  Registration.fromMap(map) {
     this.id = map[propId];
     this.yourName = map[propYourName];
     this.personName = map[propPersonName];
@@ -25,13 +25,13 @@ class Names {
     this.password = map[propPassword];
   }
 
-  Names();
+  Registration();
 
-  static String label = "names";
+  static String label = "registrations";
   static String propId = "id";
   static String propYourName = "yourName";
   static String propPersonName = "personName";
   static String propSamePerson = "samePerson";
-  static String propEmail = "login";
+  static String propEmail = "email";
   static String propPassword = "password";
 }

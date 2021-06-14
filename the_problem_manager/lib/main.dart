@@ -8,7 +8,7 @@ import 'controller/remote/monitor_db/monitor_db_bloc.dart';
 import 'view/periodList.dart';
 import 'view/periodForm.dart';
 import 'view/firstScreen.dart';
-import 'view/nameForm.dart';
+import 'view/registrationForm.dart';
 
 void main() {
   runApp(MyApp());
@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
   Widget register() {
     return Padding(
       padding: EdgeInsets.all(16.0),
-      child: NameForm(),
+      child: RegistrationForm(),
     );
   }
 

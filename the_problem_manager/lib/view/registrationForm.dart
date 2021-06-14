@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
-import '../model/names.dart';
+import '../model/registration.dart';
 
-class NameForm extends StatefulWidget {
+class RegistrationForm extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return NameFormState();
+    return RegistrationFormState();
   }
 }
 
-class NameFormState extends State {
+class RegistrationFormState extends State {
   @override
   Widget build(BuildContext context) {
     return nameForm();
   }
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  Names names = Names();
+  Registration registration = Registration();
   String password = "";
 
   Widget nameForm() {
@@ -30,7 +30,7 @@ class NameFormState extends State {
             Divider(),
             Text("Pessoa que menstrua:"),
             personOptions(),
-            loginField(),
+            emailField(),
             passwordField(),
             retypePasswordField(),
             button(),
@@ -45,7 +45,7 @@ class NameFormState extends State {
       keyboardType: TextInputType.name,
       validator: mandatory,
       onSaved: (String inValue) {
-        names.yourName = inValue;
+        registration.yourName = inValue;
       },
       decoration: InputDecoration(
         hintText: "insira seu nome",
@@ -85,10 +85,10 @@ class NameFormState extends State {
   Widget personOption(bool value) {
     return Radio(
       value: value,
-      groupValue: names.samePerson,
+      groupValue: registration.samePerson,
       onChanged: (bool inValue) {
         setState(() {
-          names.samePerson = inValue;
+          registration.samePerson = inValue;
         });
       },
     );
@@ -96,16 +96,16 @@ class NameFormState extends State {
 
   Widget otherPersonName() {
     return TextFormField(
-      enabled: !names.samePerson,
+      enabled: !registration.samePerson,
       keyboardType: TextInputType.name,
       validator: (String inValue) {
-        if (inValue.length == 0 && !names.samePerson) {
+        if (inValue.length == 0 && !registration.samePerson) {
           return "campo obrigatório";
         }
         return null;
       },
       onSaved: (String inValue) {
-        names.personName = inValue;
+        registration.personName = inValue;
       },
       decoration: InputDecoration(
         hintText: "insira o nome da pessoa que menstrua",
@@ -114,12 +114,12 @@ class NameFormState extends State {
     );
   }
 
-  Widget loginField() {
+  Widget emailField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
       validator: mandatory,
       onSaved: (String inValue) {
-        names.email = inValue;
+        registration.email = inValue;
       },
       decoration: InputDecoration(
         hintText: "email@domain.com",
@@ -134,7 +134,7 @@ class NameFormState extends State {
       obscureText: true,
       validator: mandatory,
       onSaved: (String inValue) {
-        names.password = inValue;
+        registration.password = inValue;
       },
       onChanged: (String inValue) {
         password = inValue;
