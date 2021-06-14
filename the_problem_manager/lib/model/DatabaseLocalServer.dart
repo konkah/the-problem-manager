@@ -57,21 +57,6 @@ class DatabaseLocalServer {
     return id;
   }
 
-  Future<int> updateDates(Dates model) async {
-    Database db = await this.database;
-
-    var id = await db.update(
-        Dates.label,
-        model.toMap(),
-        where: "${Dates.propId} = ?",
-        whereArgs: [model.id]
-    );
-
-    notify();
-
-    return id;
-  }
-
   Future<int> deleteDates(int id) async {
     Database db = await this.database;
 

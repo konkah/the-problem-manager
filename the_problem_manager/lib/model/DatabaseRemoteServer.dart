@@ -45,20 +45,6 @@ class DatabaseRemoteServer {
     return response.data["id"];
   }
 
-  Future<int> updateDates(Dates model) async {
-    Response response = await _dio.put(
-      _datesUrl + "${model.id}/",
-      options: Options(
-          headers: {"Accept": "application/json"}
-      ),
-      data: jsonEncode(model.toMap())
-    );
-
-    notify();
-
-    return response.data["id"];
-  }
-
   Future<int> deleteDates(int id) async {
     await _dio.delete(
       _datesUrl + "$id/",
