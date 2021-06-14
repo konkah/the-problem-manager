@@ -7,13 +7,16 @@ import 'package:the_problem_manager/controller/remote/monitor_db/monitor_db_stat
 import 'package:the_problem_manager/helper/date.dart';
 import 'package:the_problem_manager/model/period.dart';
 
+import 'common.dart';
+
 class PeriodList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Text("Menstruações"),
+          Common.title("Menstruações"),
+          Common.divider(),
           BlocBuilder<MonitorBloc, MonitorState>(
             builder: (context, state) {
               return table(context, state.periodList);

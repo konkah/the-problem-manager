@@ -4,6 +4,7 @@ import 'package:the_problem_manager/controller/remote/manage_db/manage_db_state.
 import 'package:the_problem_manager/controller/remote/manage_db/manage_db_bloc.dart';
 import 'package:the_problem_manager/controller/remote/manage_db/manage_db_event.dart';
 import 'package:the_problem_manager/helper/date.dart';
+import 'package:the_problem_manager/view/common.dart';
 
 import '../model/period.dart';
 
@@ -33,7 +34,8 @@ class PeriodFormState extends State {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text("Cadastrar mentruação"),
+              Common.title("Cadastrar mentruação"),
+              Common.divider(),
               startField(),
               endField(),
               button(),

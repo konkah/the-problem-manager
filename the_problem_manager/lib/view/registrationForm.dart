@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/registration.dart';
+import 'common.dart';
 
 class RegistrationForm extends StatefulWidget {
   @override
@@ -25,38 +26,20 @@ class RegistrationFormState extends State {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            title("Cadastro"),
-            divider(),
+            Common.title("Cadastro"),
+            Common.divider(),
             yourNameField(),
             emailField(),
             passwordField(),
             retypePasswordField(),
-            divider(),
-            title("sobre a pessoa que menstrua..."),
-            divider(),
+            Common.dividerTransparent(),
+            Common.title("sobre a pessoa que menstrua..."),
+            Common.divider(),
             personOptions(),
             button(),
           ],
         ),
       ),
-    );
-  }
-
-  Text title(String message) {
-    return Text(message,
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: Colors.green,
-      ),
-    );
-  }
-
-  Divider divider() {
-    return Divider(
-      thickness: 5,
-      color: Colors.greenAccent,
-      height: 30,
     );
   }
 

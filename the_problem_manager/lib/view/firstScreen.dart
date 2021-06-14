@@ -1,28 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:the_problem_manager/view/common.dart';
 
 class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        title(),
+        Common.title("Próxima TPM Prevista"),
+        Common.divider(),
         calendar(),
       ],
     );
-  }
-
-  Widget title() {
-    return Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Text(
-            "Próxima TPM Prevista",
-            style: TextStyle(
-              fontSize: 24,
-              color: Colors.redAccent,
-              fontStyle: FontStyle.italic,
-            ),
-        ),
-      );
   }
 
   Widget calendar() {
