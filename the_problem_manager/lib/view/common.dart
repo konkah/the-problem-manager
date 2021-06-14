@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class Common {
-  static MaterialColor mainColor = Colors.red;
+  static MaterialColor mainColor = Colors.indigo;
 
   static Text title(String message) {
     return Text(message,
       style: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,
-        color: Colors.blue,
+        color: Colors.blueAccent,
       ),
     );
   }
