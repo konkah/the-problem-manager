@@ -1,4 +1,4 @@
-import 'package:the_problem_manager/model/dates.dart';
+import 'package:the_problem_manager/model/period.dart';
 
 abstract class ManageEvent {}
 
@@ -8,6 +8,6 @@ class DeleteEvent extends ManageEvent {
 }
 
 class InsertEvent extends ManageEvent {
-  Dates dates;
-  InsertEvent({this.dates});
+  Period period;
+  InsertEvent({this.period});
 }

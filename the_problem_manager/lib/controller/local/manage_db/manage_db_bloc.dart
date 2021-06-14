@@ -12,10 +12,10 @@ class ManageBloc extends Bloc<ManageEvent, ManageState>{
     var db = DatabaseLocalServer.helper;
 
     if (event is InsertEvent) {
-      await db.insertDates(event.dates);
+      await db.insertPeriod(event.period);
       yield InsertState();
     } else if (event is DeleteEvent) {
-      await db.deleteDates(event.id);
+      await db.deletePeriod(event.id);
       yield DeleteState();
     }
   }

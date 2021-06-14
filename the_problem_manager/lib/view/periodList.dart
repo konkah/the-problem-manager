@@ -5,9 +5,9 @@ import 'package:the_problem_manager/controller/remote/manage_db/manage_db_event.
 import 'package:the_problem_manager/controller/remote/monitor_db/monitor_db_bloc.dart';
 import 'package:the_problem_manager/controller/remote/monitor_db/monitor_db_state.dart';
 import 'package:the_problem_manager/helper/date.dart';
-import 'package:the_problem_manager/model/dates.dart';
+import 'package:the_problem_manager/model/period.dart';
 
-class MenstruationList extends StatelessWidget {
+class PeriodList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -16,7 +16,7 @@ class MenstruationList extends StatelessWidget {
           Text("Menstruações"),
           BlocBuilder<MonitorBloc, MonitorState>(
             builder: (context, state) {
-              return table(context, state.datesList);
+              return table(context, state.periodList);
             }
           ),
         ],
@@ -24,7 +24,7 @@ class MenstruationList extends StatelessWidget {
     );
   }
 
-  Widget table(BuildContext context, List<Dates> datesList) {
+  Widget table(BuildContext context, List<Period> periodList) {
     return DataTable(
       columns: [
         DataColumn(
@@ -38,21 +38,21 @@ class MenstruationList extends StatelessWidget {
         ),
       ],
       rows:
-        datesList.map((dates) =>
-          generateDataRow(dates, context)
+        periodList.map((period) =>
+          generateDataRow(period, context)
         ).toList(),
     );
   }
 
-  DataRow generateDataRow(Dates dates, BuildContext context) {
+  DataRow generateDataRow(Period period, BuildContext context) {
     return DataRow(cells: [
-      DataCell(Text(Date.format(dates.start))),
-      DataCell(Text(Date.format(dates.end))),
+      DataCell(Text(Date.format(period.start))),
+      DataCell(Text(Date.format(period.end))),
       DataCell(
         Icon(Icons.delete),
         onTap: () {
           BlocProvider.of<ManageBloc>(context)
-              .add(DeleteEvent(id: dates.id));
+              .add(DeleteEvent(id: period.id));
         }
       ),
     ]);

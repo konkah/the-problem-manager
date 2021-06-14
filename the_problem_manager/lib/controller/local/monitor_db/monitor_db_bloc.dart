@@ -4,29 +4,29 @@ import 'package:bloc/bloc.dart';
 import 'package:the_problem_manager/controller/local/monitor_db/monitor_db_event.dart';
 import 'package:the_problem_manager/controller/local/monitor_db/monitor_db_state.dart';
 import 'package:the_problem_manager/model/DatabaseLocalServer.dart';
-import 'package:the_problem_manager/model/dates.dart';
+import 'package:the_problem_manager/model/period.dart';
 
 class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   StreamSubscription _subscription;
 
-  MonitorBloc() : super(MonitorState(datesList: [])) {
+  MonitorBloc() : super(MonitorState(periodList: [])) {
     add(AskNewList());
 
     _subscription =
       DatabaseLocalServer.helper.stream.listen((response) {
-        List<Dates> datesList = response;
-        add(UpdateList(datesList: datesList));
+        List<Period> periodList = response;
+        add(UpdateList(periodList: periodList));
       });
   }
 
   @override
   Stream<MonitorState> mapEventToState(MonitorEvent event) async* {
     if (event is AskNewList) {
-      var response = await DatabaseLocalServer.helper.getDatesList();
-      List<Dates> datesList = response;
-      yield MonitorState(datesList: datesList);
+      var response = await DatabaseLocalServer.helper.getPeriodList();
+      List<Period> periodList = response;
+      yield MonitorState(periodList: periodList);
     } else if (event is UpdateList) {
-      yield MonitorState(datesList: event.datesList);
+      yield MonitorState(periodList: event.periodList);
     }
   }
 

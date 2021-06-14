@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'controller/remote/manage_db/manage_db_state.dart';
 import 'controller/remote/manage_db/manage_db_bloc.dart';
 import 'controller/remote/monitor_db/monitor_db_bloc.dart';
-import 'view/menstruationList.dart';
-import 'view/datesForm.dart';
+import 'view/periodList.dart';
+import 'view/periodForm.dart';
 import 'view/firstScreen.dart';
 import 'view/nameForm.dart';
 
@@ -51,8 +51,8 @@ class MyApp extends StatelessWidget {
           children: [
             firstScreen(),
             register(),
-            dates(),
-            menstruationList(),
+            periodForm(),
+            periodList(),
             project(),
           ],
         ),
@@ -84,17 +84,17 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Widget dates() {
+  Widget periodForm() {
     return Padding(
       padding: EdgeInsets.all(16.0),
-      child: DatesForm(),
+      child: PeriodForm(),
     );
   }
 
-  Widget menstruationList() {
+  Widget periodList() {
     return Padding(
       padding: EdgeInsets.all(16.0),
-      child: MenstruationList(),
+      child: PeriodList(),
     );
   }
 

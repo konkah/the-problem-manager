@@ -1,6 +1,6 @@
-import 'package:the_problem_manager/model/dates.dart';
+import 'package:the_problem_manager/model/period.dart';
 
 class MonitorState {
-  List<Dates> datesList;
-  MonitorState({this.datesList});
+  List<Period> periodList;
+  MonitorState({this.periodList});
 }

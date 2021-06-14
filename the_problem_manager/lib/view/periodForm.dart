@@ -5,23 +5,23 @@ import 'package:the_problem_manager/controller/remote/manage_db/manage_db_bloc.d
 import 'package:the_problem_manager/controller/remote/manage_db/manage_db_event.dart';
 import 'package:the_problem_manager/helper/date.dart';
 
-import '../model/dates.dart';
+import '../model/period.dart';
 
-class DatesForm extends StatefulWidget {
+class PeriodForm extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return DatesFormState();
+    return PeriodFormState();
   }
 }
 
-class DatesFormState extends State {
+class PeriodFormState extends State {
   @override
   Widget build(BuildContext context) {
     return nameForm();
   }
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  Dates datesForm = Dates();
+  Period period = Period();
 
   Widget nameForm() {
     return Form(
@@ -63,7 +63,7 @@ class DatesFormState extends State {
       keyboardType: TextInputType.datetime,
       validator: this.dateValidator,
       onSaved: (String inValue) {
-        datesForm.start = Date.parse(inValue);
+        period.start = Date.parse(inValue);
       },
       decoration: InputDecoration(
         hintText: Date.pattern,
@@ -77,7 +77,7 @@ class DatesFormState extends State {
       keyboardType: TextInputType.datetime,
       validator: this.dateValidator,
       onSaved: (String inValue) {
-        datesForm.end = Date.parse(inValue);
+        period.end = Date.parse(inValue);
       },
       decoration: InputDecoration(
         hintText: Date.pattern,
@@ -94,7 +94,7 @@ class DatesFormState extends State {
           formKey.currentState.save();
 
           BlocProvider.of<ManageBloc>(context)
-            .add(InsertEvent(dates: datesForm));
+            .add(InsertEvent(period: period));
         }
       },
     );

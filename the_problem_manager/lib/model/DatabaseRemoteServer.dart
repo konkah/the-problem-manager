@@ -3,37 +3,37 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:socket_io_client/socket_io_client.dart';
-import 'package:the_problem_manager/model/dates.dart';
+import 'package:the_problem_manager/model/period.dart';
 
 class DatabaseRemoteServer {
   static DatabaseRemoteServer helper = DatabaseRemoteServer._createInstance();
   DatabaseRemoteServer._createInstance();
 
   static String _databaseUrl = "http://192.168.0.16:8000/";
-  static String _datesUrl = _databaseUrl + Dates.label + "/";
+  static String _periodUrl = _databaseUrl + Period.label + "/";
 
   Dio _dio = Dio();
 
-  Future<List<Dates>> getDatesList() async {
+  Future<List<Period>> getPeriodList() async {
     Response response = await _dio.get(
-      _datesUrl,
+      _periodUrl,
       options: Options(
         headers: {"Accept": "application/json"}
       )
     );
 
-    List<Dates> datesList = [];
+    List<Period> periodList = [];
 
     response.data.forEach(
-        (e) => datesList.add(Dates.fromMap(e))
+        (e) => periodList.add(Period.fromMap(e))
     );
 
-    return datesList;
+    return periodList;
   }
 
-  Future<int> insertDates(Dates model) async {
+  Future<int> insertPeriod(Period model) async {
     Response response = await _dio.post(
-      _datesUrl,
+      _periodUrl,
       options: Options(
           headers: {"Accept": "application/json"}
       ),
@@ -45,9 +45,9 @@ class DatabaseRemoteServer {
     return response.data["id"];
   }
 
-  Future<int> deleteDates(int id) async {
+  Future<int> deletePeriod(int id) async {
     await _dio.delete(
-      _datesUrl + "$id/",
+      _periodUrl + "$id/",
       options: Options(
           headers: {"Accept": "application/json"}
       )
@@ -78,7 +78,7 @@ class DatabaseRemoteServer {
 
   notify() async {
     if (_controller != null) {
-      var list = await getDatesList();
+      var list = await getPeriodList();
       _controller.sink.add(list);
     }
   }
