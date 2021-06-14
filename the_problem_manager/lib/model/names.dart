@@ -1,16 +1,18 @@
-import 'package:the_problem_manager/model/DatabaseLocalServer.dart';
-
 class Names {
   int id = 0;
   String yourName = "";
   String personName = "";
   bool samePerson = false;
+  String email = "";
+  String password = "";
 
   Map<String, Object> toMap() {
     return {
       propYourName: yourName,
       propPersonName: personName,
       propSamePerson: samePerson,
+      propEmail: email,
+      propPassword: password,
     };
   }
 
@@ -19,6 +21,8 @@ class Names {
     this.yourName = map[propYourName];
     this.personName = map[propPersonName];
     this.samePerson = map[propSamePerson];
+    this.email = map[propEmail];
+    this.password = map[propPassword];
   }
 
   Names();
@@ -28,4 +32,6 @@ class Names {
   static String propYourName = "yourName";
   static String propPersonName = "personName";
   static String propSamePerson = "samePerson";
+  static String propEmail = "login";
+  static String propPassword = "password";
 }

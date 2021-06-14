@@ -17,6 +17,7 @@ class NameFormState extends State {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Names names = Names();
+  String password = "";
 
   Widget nameForm() {
     return Form(
@@ -24,14 +25,14 @@ class NameFormState extends State {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Text("Dados das pessoas"),
+            Text("Cadastro"),
             yourNameField(),
             Divider(),
-            Text("Usuário"),
-            Divider(),
-            Divider(),
-            Text("Pessoa que menstrua:", textAlign: TextAlign.left,),
+            Text("Pessoa que menstrua:"),
             personOptions(),
+            loginField(),
+            passwordField(),
+            retypePasswordField(),
             button(),
           ],
         ),
@@ -42,18 +43,13 @@ class NameFormState extends State {
   Widget yourNameField() {
     return TextFormField(
       keyboardType: TextInputType.name,
-      validator: (String inValue) {
-        if (inValue.length == 0) {
-          return "campo obrigatório";
-        }
-        return null;
-      },
+      validator: mandatory,
       onSaved: (String inValue) {
         names.yourName = inValue;
       },
       decoration: InputDecoration(
         hintText: "insira seu nome",
-        labelText: "Seu nome",
+        labelText: "Nome do usuário",
       ),
     );
   }
@@ -112,10 +108,64 @@ class NameFormState extends State {
         names.personName = inValue;
       },
       decoration: InputDecoration(
-        hintText: "coloque o nome da pessoa",
-        labelText: "pessoa que menstrua",
+        hintText: "insira o nome da pessoa que menstrua",
+        labelText: "Nome da pessoa",
       ),
     );
+  }
+
+  Widget loginField() {
+    return TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      validator: mandatory,
+      onSaved: (String inValue) {
+        names.email = inValue;
+      },
+      decoration: InputDecoration(
+        hintText: "email@domain.com",
+        labelText: "E-mail",
+      ),
+    );
+  }
+
+  Widget passwordField() {
+    return TextFormField(
+      keyboardType: TextInputType.visiblePassword,
+      obscureText: true,
+      validator: mandatory,
+      onSaved: (String inValue) {
+        names.password = inValue;
+      },
+      onChanged: (String inValue) {
+        password = inValue;
+      },
+      decoration: InputDecoration(
+        labelText: "Senha",
+      ),
+    );
+  }
+
+  Widget retypePasswordField() {
+    return TextFormField(
+      keyboardType: TextInputType.visiblePassword,
+      obscureText: true,
+      validator: (inValue) {
+        if (inValue != password)
+          return "senhas precisam ser iguais";
+
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Redigite a Senha",
+      ),
+    );
+  }
+
+  String mandatory(String inValue) {
+    if (inValue.length == 0) {
+      return "campo obrigatório";
+    }
+    return null;
   }
 
   Widget button() {
