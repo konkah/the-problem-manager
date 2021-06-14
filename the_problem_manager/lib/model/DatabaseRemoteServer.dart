@@ -9,7 +9,7 @@ class DatabaseRemoteServer {
   static DatabaseRemoteServer helper = DatabaseRemoteServer._createInstance();
   DatabaseRemoteServer._createInstance();
 
-  static String _databaseUrl = "http://192.168.0.13:8000/";
+  static String _databaseUrl = "http://192.168.0.16:8000/";
   static String _datesUrl = _databaseUrl + Dates.label + "/";
 
   Dio _dio = Dio();
