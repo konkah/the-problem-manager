@@ -31,25 +31,18 @@ class DatabaseLocalServer {
 
   void _createDb(Database db, int newVersion) async {
     await db.execute(
-        "CREATE TABLE $datesTable ($datesColId INTEGER PRIMARY KEY AUTOINCREMENT, $datesColStart DATE, $datesColEnd DATE)"
+        "CREATE TABLE ${Dates.label} ("
+            "${Dates.propId} INTEGER PRIMARY KEY AUTOINCREMENT, "
+            "${Dates.propStart} DATE, "
+            "${Dates.propEnd} DATE"
+        ")"
     );
   }
-
-  static String datesTable = "dates";
-  static String datesColId = "id";
-  static String datesColStart = "start";
-  static String datesColEnd = "end";
-
-  static String namesTable = "names";
-  static String namesColId = "id";
-  static String namesColYourName = "yourName";
-  static String namesColPersonName = "personName";
-  static String namesColSamePerson = "samePerson";
 
   Future<List<Dates>> getDatesList() async {
     Database db = await this.database;
 
-    var datesMapList = await db.query(datesTable);
+    var datesMapList = await db.query(Dates.label);
 
     return datesMapList.map((e) => Dates.fromMap(e)).toList();
   }
@@ -57,7 +50,7 @@ class DatabaseLocalServer {
   Future<int> insertDates(Dates model) async {
     Database db = await this.database;
 
-    var id = await db.insert(datesTable, model.toMap());
+    var id = await db.insert(Dates.label, model.toMap());
 
     notify();
 
@@ -68,9 +61,9 @@ class DatabaseLocalServer {
     Database db = await this.database;
 
     var id = await db.update(
-        datesTable,
+        Dates.label,
         model.toMap(),
-        where: "$datesColId = ?",
+        where: "${Dates.propId} = ?",
         whereArgs: [model.id]
     );
 
@@ -83,8 +76,8 @@ class DatabaseLocalServer {
     Database db = await this.database;
 
     var result = await db.delete(
-        datesTable,
-        where: "$datesColId = ?",
+        Dates.label,
+        where: "${Dates.propId} = ?",
         whereArgs: [id]
     );
 

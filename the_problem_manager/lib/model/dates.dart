@@ -1,5 +1,4 @@
 import 'package:the_problem_manager/helper/date.dart';
-import 'package:the_problem_manager/model/DatabaseLocalServer.dart';
 
 class Dates {
   int id = 0;
@@ -8,19 +7,15 @@ class Dates {
 
   Map<String, dynamic> toMap() {
     return {
-      DatabaseLocalServer.datesColStart: Date.toUniversal(start),
-      DatabaseLocalServer.datesColEnd: Date.toUniversal(end),
+      propStart: Date.toUniversal(start),
+      propEnd: Date.toUniversal(end),
     };
   }
 
   Dates.fromMap(map) {
-    this.id = map[DatabaseLocalServer.datesColId];
-    this.start = Date.fromUniversal(
-      map[DatabaseLocalServer.datesColStart]
-    );
-    this.end = Date.fromUniversal(
-      map[DatabaseLocalServer.datesColEnd]
-    );
+    this.id = map[propId];
+    this.start = Date.fromUniversal(map[propStart]);
+    this.end = Date.fromUniversal(map[propEnd]);
   }
 
   Dates();
@@ -29,4 +24,9 @@ class Dates {
   String toString() {
     return "[$id] $start > $end";
   }
+
+  static String label = "dates";
+  static String propId = "id";
+  static String propStart = "start";
+  static String propEnd = "end";
 }

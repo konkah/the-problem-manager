@@ -8,18 +8,24 @@ class Names {
 
   Map<String, Object> toMap() {
     return {
-      DatabaseLocalServer.namesColYourName: yourName,
-      DatabaseLocalServer.namesColPersonName: personName,
-      DatabaseLocalServer.namesColSamePerson: samePerson,
+      propYourName: yourName,
+      propPersonName: personName,
+      propSamePerson: samePerson,
     };
   }
 
   Names.fromMap(map) {
-    this.id = map[DatabaseLocalServer.namesColId];
-    this.yourName = map[DatabaseLocalServer.namesColYourName];
-    this.personName = map[DatabaseLocalServer.namesColPersonName];
-    this.samePerson = map[DatabaseLocalServer.namesColSamePerson];
+    this.id = map[propId];
+    this.yourName = map[propYourName];
+    this.personName = map[propPersonName];
+    this.samePerson = map[propSamePerson];
   }
 
   Names();
+
+  static String label = "names";
+  static String propId = "id";
+  static String propYourName = "yourName";
+  static String propPersonName = "personName";
+  static String propSamePerson = "samePerson";
 }
