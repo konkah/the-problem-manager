@@ -36,7 +36,7 @@ class RegistrationFormState extends State {
             Common.title("sobre a pessoa que menstrua..."),
             Common.divider(),
             personOptions(),
-            button(),
+            Common.button(formKey, "cadastrar"),
           ],
         ),
       ),
@@ -46,7 +46,7 @@ class RegistrationFormState extends State {
   Widget yourNameField() {
     return TextFormField(
       keyboardType: TextInputType.name,
-      validator: mandatory,
+      validator: Common.mandatory,
       onSaved: (String inValue) {
         registration.name = inValue;
       },
@@ -113,7 +113,7 @@ class RegistrationFormState extends State {
   Widget emailField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      validator: mandatory,
+      validator: Common.mandatory,
       onSaved: (String inValue) {
         registration.email = inValue;
       },
@@ -128,7 +128,7 @@ class RegistrationFormState extends State {
     return TextFormField(
       keyboardType: TextInputType.visiblePassword,
       obscureText: true,
-      validator: mandatory,
+      validator: Common.mandatory,
       onSaved: (String inValue) {
         registration.password = inValue;
       },
@@ -154,24 +154,6 @@ class RegistrationFormState extends State {
       decoration: InputDecoration(
         labelText: "redigite a senha",
       ),
-    );
-  }
-
-  String mandatory(String inValue) {
-    if (inValue.length == 0) {
-      return "campo obrigatório";
-    }
-    return null;
-  }
-
-  Widget button() {
-    return ElevatedButton(
-      child: Text("salvar"),
-      onPressed: () {
-        if (formKey.currentState.validate()) {
-          formKey.currentState.save();
-        }
-      },
     );
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_problem_manager/controller/remote/manage_db/manage_db_state.dart';
 import 'package:the_problem_manager/controller/remote/manage_db/manage_db_bloc.dart';
-import 'package:the_problem_manager/controller/remote/manage_db/manage_db_event.dart';
 import 'package:the_problem_manager/helper/date.dart';
 import 'package:the_problem_manager/view/common.dart';
 
@@ -38,7 +37,7 @@ class PeriodFormState extends State {
               Common.divider(),
               startField(),
               endField(),
-              button(),
+              Common.button(formKey, "Salvar"),
             ],
           ),
         ),
@@ -85,20 +84,6 @@ class PeriodFormState extends State {
         hintText: Date.pattern,
         labelText: "fim",
       ),
-    );
-  }
-
-  Widget button() {
-    return ElevatedButton(
-      child: Text("salvar"),
-      onPressed: () {
-        if (formKey.currentState.validate()) {
-          formKey.currentState.save();
-
-          BlocProvider.of<ManageBloc>(context)
-            .add(InsertEvent(period: period));
-        }
-      },
     );
   }
 }

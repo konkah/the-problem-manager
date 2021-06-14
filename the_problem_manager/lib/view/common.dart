@@ -29,6 +29,27 @@ class Common {
     );
   }
 
+  static String mandatory(String inValue) {
+    if (inValue.length == 0) {
+      return "campo obrigatório";
+    }
+    return null;
+  }
+
+  static Widget button(GlobalKey<FormState> formKey, String text) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: ElevatedButton(
+        child: Text(text),
+        onPressed: () {
+          if (formKey.currentState.validate()) {
+            formKey.currentState.save();
+          }
+        },
+      ),
+    );
+  }
+
   static void showMessage(context, message) {
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -41,4 +62,5 @@ class Common {
           ),
         )
     );
-  }}
+  }
+}

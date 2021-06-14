@@ -6,6 +6,7 @@ import 'package:the_problem_manager/controller/remote/monitor_db/monitor_db_bloc
 
 import 'about.dart';
 import 'common.dart';
+import 'loginForm.dart';
 import 'registrationForm.dart';
 
 class LoggedOut extends StatelessWidget {
@@ -44,7 +45,7 @@ class LoggedOut extends StatelessWidget {
           child: TabBarView(
             children: [
               RegistrationForm(),
-              RegistrationForm(),
+              LoginForm(),
               About(),
             ],
           ),
