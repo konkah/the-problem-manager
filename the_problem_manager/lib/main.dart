@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_problem_manager/controller/manage_db/manage_db_state.dart';
 import 'package:the_problem_manager/controller/monitor_db/monitor_db_bloc.dart';
 import 'package:the_problem_manager/view/menstruationList.dart';
 
@@ -37,14 +38,24 @@ class MyApp extends StatelessWidget {
 
   Scaffold buildScreen() {
     return Scaffold(
-      body: TabBarView(
-        children: [
-          firstScreen(),
-          register(),
-          dates(),
-          menstruations(),
-          project(),
-        ],
+      body: BlocListener<ManageBloc, ManageState>(
+        listener: (context, state) {
+          if (state is InsertState) {
+            showSuccess(context, state.message);
+            DefaultTabController.of(context).animateTo(3);
+          } else if (state is DeleteState) {
+            showSuccess(context, state.message);
+          }
+        },
+        child: TabBarView(
+          children: [
+            firstScreen(),
+            register(),
+            dates(),
+            menstruations(),
+            project(),
+          ],
+        ),
       ),
       appBar: AppBar(
         title: Text("The Problem Manager"),
@@ -157,6 +168,22 @@ class MyApp extends StatelessWidget {
                 " e pessoas próximas. Tornando a relação mais saudável, estável"
                 " e confiável para ambos os lados."),
       ]),
+    );
+  }
+
+  void showSuccess(context, message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.black,
+        duration: Duration(seconds: 5),
+        content: Text(message),
+        action: SnackBarAction(
+          label: "Ok",
+          onPressed: () {
+            print("closed snack bar");
+          },
+        ),
+      )
     );
   }
 }

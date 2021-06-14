@@ -7,7 +7,7 @@ class DeleteEvent extends ManageEvent {
   DeleteEvent({this.id});
 }
 
-class SubmitEvent extends ManageEvent {
+class InsertEvent extends ManageEvent {
   Dates dates;
-  SubmitEvent({this.dates});
+  InsertEvent({this.dates});
 }

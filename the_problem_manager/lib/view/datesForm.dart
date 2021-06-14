@@ -79,27 +79,9 @@ class DatesFormState extends State {
           formKey.currentState.save();
 
           BlocProvider.of<ManageBloc>(context)
-            .add(SubmitEvent(dates: datesForm));
-
-          showSuccess();
+            .add(InsertEvent(dates: datesForm));
         }
       },
-    );
-  }
-
-  void showSuccess() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.black,
-        duration: Duration(seconds: 5),
-        content: Text("Informação salva com sucesso!"),
-        action: SnackBarAction(
-          label: "Ok",
-          onPressed: () {
-            print("closed snack bar");
-          },
-        ),
-      )
     );
   }
 }
