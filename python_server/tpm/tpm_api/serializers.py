@@ -1,8 +1,8 @@
-from .models import Dates
+from .models import Period
 from rest_framework import serializers
 
 
-class DatesSerializer(serializers.ModelSerializer):
+class PeriodSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Dates
+        model = Period
         fields = "__all__"

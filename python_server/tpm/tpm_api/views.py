@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from .models import Dates
+from .models import Period
 from rest_framework import viewsets, permissions
-from tpm_api.serializers import DatesSerializer
+from tpm_api.serializers import PeriodSerializer
 
 
-class DatesViewSet(viewsets.ModelViewSet):
+class PeriodViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Dates.objects.all().order_by('-start')
-    serializer_class = DatesSerializer
+    queryset = Period.objects.all().order_by('-start')
+    serializer_class = PeriodSerializer
     permission_classes = [permissions.AllowAny]
