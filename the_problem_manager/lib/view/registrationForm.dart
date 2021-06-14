@@ -48,7 +48,7 @@ class RegistrationFormState extends State {
       keyboardType: TextInputType.name,
       validator: mandatory,
       onSaved: (String inValue) {
-        registration.yourName = inValue;
+        registration.name = inValue;
       },
       decoration: InputDecoration(
         hintText: "como quer te chamemos?",
