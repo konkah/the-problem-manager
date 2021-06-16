@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_problem_manager/controller/manage_db/manage_db_event.dart';
-
+import '../controller/manage_db/manage_db_event.dart';
 import '../model/registration.dart';
 import 'common.dart';
 

@@ -1,6 +1,6 @@
-import 'package:the_problem_manager/model/period.dart';
-import 'package:the_problem_manager/model/registration.dart';
-import 'package:the_problem_manager/model/user.dart';
+import '../../model/period.dart';
+import '../../model/registration.dart';
+import '../../model/user.dart';
 
 abstract class ManageEvent {}
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_problem_manager/model/DatabaseLocalServer.dart';
-import 'package:the_problem_manager/view/common.dart';
-import 'package:the_problem_manager/view/loggedIn.dart';
-import 'package:the_problem_manager/view/loggedOut.dart';
+import 'model/DatabaseLocalServer.dart';
+import 'view/common.dart';
+import 'view/loggedIn.dart';
+import 'view/loggedOut.dart';
 
 import 'controller/manage_db/manage_db_bloc.dart';
 import 'controller/manage_db/manage_db_state.dart' as manage;

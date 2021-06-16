@@ -1,10 +1,10 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
-import 'package:the_problem_manager/model/DatabaseLocalServer.dart';
-import 'package:the_problem_manager/model/DatabaseRemoteServer.dart';
-import 'package:the_problem_manager/model/period.dart';
-import 'package:the_problem_manager/model/user.dart';
+
+import '../../model/DatabaseLocalServer.dart';
+import '../../model/DatabaseRemoteServer.dart';
+import '../../model/period.dart';
+import '../../model/user.dart';
 
 import 'monitor_db_event.dart';
 import 'monitor_db_state.dart';
@@ -36,7 +36,6 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
     } else if (event is AskNewListEvent) {
       yield await getNewList();
     } else if (event is LoginEvent) {
-      print(1);
       yield LoginState(user: event.user);
       yield await getNewList();
     }

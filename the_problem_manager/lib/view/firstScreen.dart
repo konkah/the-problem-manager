@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_problem_manager/view/common.dart';
+import '../view/common.dart';
 
 class FirstScreen extends StatelessWidget {
   @override

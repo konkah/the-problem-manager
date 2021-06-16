@@ -1,4 +1,4 @@
-import 'package:the_problem_manager/model/registration.dart';
+import '../model/registration.dart';
 
 class User {
   String email = "";

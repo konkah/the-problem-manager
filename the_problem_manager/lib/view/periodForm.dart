@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_problem_manager/controller/manage_db/manage_db_event.dart';
-import 'package:the_problem_manager/controller/manage_db/manage_db_state.dart';
-import 'package:the_problem_manager/controller/manage_db/manage_db_bloc.dart';
-import 'package:the_problem_manager/helper/date.dart';
-import 'package:the_problem_manager/view/common.dart';
-
+import '../controller/manage_db/manage_db_event.dart';
+import '../controller/manage_db/manage_db_state.dart';
+import '../controller/manage_db/manage_db_bloc.dart';
+import '../helper/date.dart';
+import '../view/common.dart';
 import '../model/period.dart';
 
 class PeriodForm extends StatefulWidget {

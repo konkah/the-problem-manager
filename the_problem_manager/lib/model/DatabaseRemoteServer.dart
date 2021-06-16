@@ -3,9 +3,9 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:socket_io_client/socket_io_client.dart';
-import 'package:the_problem_manager/model/DatabaseLocalServer.dart';
-import 'package:the_problem_manager/model/period.dart';
-import 'package:the_problem_manager/model/registration.dart';
+import '../model/DatabaseLocalServer.dart';
+import '../model/period.dart';
+import '../model/registration.dart';
 
 import 'user.dart';
 

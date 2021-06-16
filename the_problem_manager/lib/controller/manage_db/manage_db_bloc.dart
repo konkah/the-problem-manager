@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:the_problem_manager/model/DatabaseRemoteServer.dart';
+import '../../model/DatabaseRemoteServer.dart';
 
 import 'manage_db_event.dart';
 import 'manage_db_state.dart';

@@ -1,4 +1,4 @@
-import 'package:the_problem_manager/helper/date.dart';
+import '../helper/date.dart';
 
 class Period {
   int id = 0;
