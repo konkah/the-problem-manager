@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_problem_manager/controller/remote/manage_db/manage_db_bloc.dart';
-import 'package:the_problem_manager/controller/remote/manage_db/manage_db_event.dart';
-import 'package:the_problem_manager/controller/remote/monitor_db/monitor_db_bloc.dart';
-import 'package:the_problem_manager/controller/remote/monitor_db/monitor_db_state.dart';
+import 'package:the_problem_manager/controller/manage_db/manage_db_bloc.dart';
+import 'package:the_problem_manager/controller/manage_db/manage_db_event.dart';
+import 'package:the_problem_manager/controller/monitor_db/monitor_db_bloc.dart';
+import 'package:the_problem_manager/controller/monitor_db/monitor_db_state.dart';
 import 'package:the_problem_manager/helper/date.dart';
 import 'package:the_problem_manager/model/period.dart';
 
@@ -19,7 +19,11 @@ class PeriodList extends StatelessWidget {
           Common.divider(),
           BlocBuilder<MonitorBloc, MonitorState>(
             builder: (context, state) {
-              return table(context, state.periodList);
+              if (state is PeriodListState) {
+                return table(context, state.periodList);
+              } else {
+                return table(context, []);
+              }
             }
           ),
         ],

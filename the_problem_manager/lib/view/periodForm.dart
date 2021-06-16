@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_problem_manager/controller/remote/manage_db/manage_db_state.dart';
-import 'package:the_problem_manager/controller/remote/manage_db/manage_db_bloc.dart';
+import 'package:the_problem_manager/controller/manage_db/manage_db_event.dart';
+import 'package:the_problem_manager/controller/manage_db/manage_db_state.dart';
+import 'package:the_problem_manager/controller/manage_db/manage_db_bloc.dart';
 import 'package:the_problem_manager/helper/date.dart';
 import 'package:the_problem_manager/view/common.dart';
 
@@ -37,7 +38,7 @@ class PeriodFormState extends State {
               Common.divider(),
               startField(),
               endField(),
-              Common.button(formKey, "Salvar"),
+              Common.submitter(context, "Salvar", formKey, InsertEvent(period: period)),
             ],
           ),
         ),

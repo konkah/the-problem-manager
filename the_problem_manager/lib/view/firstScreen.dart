@@ -4,12 +4,14 @@ import 'package:the_problem_manager/view/common.dart';
 class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Common.title("Próxima TPM Prevista"),
-        Common.divider(),
-        calendar(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Common.title("Próxima TPM Prevista"),
+          Common.divider(),
+          calendar(),
+        ],
+      ),
     );
   }
 

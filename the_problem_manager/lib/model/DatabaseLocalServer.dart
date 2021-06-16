@@ -3,7 +3,8 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:the_problem_manager/model/period.dart';
+
+import 'user.dart';
 
 class DatabaseLocalServer {
   static DatabaseLocalServer helper = DatabaseLocalServer._createInstance();
@@ -20,55 +21,52 @@ class DatabaseLocalServer {
 
   Future<Database> initDB() async {
     Directory dir = await getApplicationDocumentsDirectory();
-    String path = dir.path + "tpm.db";
+    String path = dir.path + "/tpm.db";
     var tpmDB = await openDatabase(
         path,
-        version: 1,
+        version: 2,
         onCreate: _createDb
     );
     return tpmDB;
   }
 
   void _createDb(Database db, int newVersion) async {
-    await db.execute(
-        "CREATE TABLE ${Period.label} ("
-            "${Period.propId} INTEGER PRIMARY KEY AUTOINCREMENT, "
-            "${Period.propStart} DATE, "
-            "${Period.propEnd} DATE"
-        ")"
+    String query = "CREATE TABLE ${User.label} ("
+      "${User.propEmail} TEXT, "
+      "${User.propPassword} TEXT, "
+      "${User.propRegistration} INT"
+    ")";
+
+    await db.execute(query);
+  }
+
+  Future<User> get() async {
+    Database db = await this.database;
+
+    var mapList = await db.query(User.label);
+
+    if (mapList.isEmpty)
+      return null;
+
+    User user = User.fromMap(mapList[0]);
+
+    return user;
+  }
+
+  Future<void> check() async {
+    User user = await this.get();
+    if (user != null)
+      notify(user);
+  }
+
+  Future<void> set(User model) async {
+    Database db = await this.database;
+
+    await db.delete(
+        User.label,
+        where: '${User.propEmail} = ?', whereArgs: [model.email]
     );
-  }
-
-  Future<List<Period>> getPeriodList() async {
-    Database db = await this.database;
-
-    var periodMapList = await db.query(Period.label);
-
-    return periodMapList.map((e) => Period.fromMap(e)).toList();
-  }
-
-  Future<int> insertPeriod(Period model) async {
-    Database db = await this.database;
-
-    var id = await db.insert(Period.label, model.toMap());
-
-    notify();
-
-    return id;
-  }
-
-  Future<int> deletePeriod(int id) async {
-    Database db = await this.database;
-
-    var result = await db.delete(
-        Period.label,
-        where: "${Period.propId} = ?",
-        whereArgs: [id]
-    );
-
-    notify();
-
-    return result;
+    await db.insert(User.label, model.toMap());
   }
 
   static StreamController _controller;
@@ -80,10 +78,9 @@ class DatabaseLocalServer {
     return _controller.stream.asBroadcastStream();
   }
 
-  notify() async {
+  notify(User user) async {
     if (_controller != null) {
-      var list = await getPeriodList();
-      _controller.sink.add(list);
+      _controller.sink.add(user);
     }
   }
 

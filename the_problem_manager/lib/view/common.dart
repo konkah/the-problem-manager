@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_problem_manager/controller/manage_db/manage_db_event.dart';
+import 'package:the_problem_manager/controller/manage_db/manage_db_bloc.dart';
 
 class Common {
   static MaterialColor mainColor = Colors.indigo;
@@ -36,7 +39,7 @@ class Common {
     return null;
   }
 
-  static Widget button(GlobalKey<FormState> formKey, String text) {
+  static Widget submitter(BuildContext context, String text, GlobalKey<FormState> formKey, ManageEvent event) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: ElevatedButton(
@@ -44,6 +47,7 @@ class Common {
         onPressed: () {
           if (formKey.currentState.validate()) {
             formKey.currentState.save();
+            BlocProvider.of<ManageBloc>(context).add(event);
           }
         },
       ),

@@ -5,10 +5,11 @@ class Period {
   DateTime start;
   DateTime end;
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toMap(int registration) {
     return {
       propStart: Date.toUniversal(start),
       propEnd: Date.toUniversal(end),
+      propRegistration: registration
     };
   }
 
@@ -29,4 +30,5 @@ class Period {
   static String propId = "id";
   static String propStart = "start";
   static String propEnd = "end";
+  static String propRegistration = "registration";
 }

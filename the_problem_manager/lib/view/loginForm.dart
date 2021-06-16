@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_problem_manager/controller/manage_db/manage_db_event.dart';
 
 import '../model/user.dart';
 import 'common.dart';
@@ -30,7 +31,10 @@ class LoginFormState extends State {
             Common.divider(),
             emailField(),
             passwordField(),
-            Common.button(formKey, "entrar"),
+            Common.submitter(
+                context, "entrar", formKey,
+                LoginEvent(user: user),
+            ),
           ],
         ),
       ),
@@ -45,7 +49,7 @@ class LoginFormState extends State {
         user.email = inValue;
       },
       decoration: InputDecoration(
-        hintText: "email@domain.com",
+        hintText: "email@site.com",
         labelText: "e-mail",
       ),
     );

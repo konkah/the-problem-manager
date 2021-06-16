@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_problem_manager/controller/manage_db/manage_db_event.dart';
 
 import '../model/registration.dart';
 import 'common.dart';
@@ -36,7 +37,10 @@ class RegistrationFormState extends State {
             Common.title("sobre a pessoa que menstrua..."),
             Common.divider(),
             personOptions(),
-            Common.button(formKey, "cadastrar"),
+            Common.submitter(
+                context, "cadastrar", formKey,
+                RegistrationEvent(registration: registration),
+            ),
           ],
         ),
       ),
@@ -101,7 +105,8 @@ class RegistrationFormState extends State {
         return null;
       },
       onSaved: (String inValue) {
-        registration.personName = inValue;
+        registration.personName =
+          registration.samePerson ? null : inValue;
       },
       decoration: InputDecoration(
         hintText: "quem você vai presentear com chocolate?",
