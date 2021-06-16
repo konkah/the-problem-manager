@@ -1,4 +1,4 @@
-import '../model/registration.dart';
+import 'registration.dart';
 
 class User {
   String email = "";

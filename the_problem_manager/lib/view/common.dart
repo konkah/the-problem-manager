@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../controller/manage_db/manage_db_event.dart';
 import '../controller/manage_db/manage_db_bloc.dart';
 
 class Common {
   static MaterialColor mainColor = Colors.indigo;
+  static MaterialColor tpmColor = Colors.red;
 
   static Text title(String message) {
     return Text(message,

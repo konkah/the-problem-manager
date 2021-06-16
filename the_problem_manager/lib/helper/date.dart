@@ -19,4 +19,58 @@ class Date {
   }
 
   static String pattern = _pattern.toUpperCase();
+
+  static DateTime today() {
+    return justDay(DateTime.now());
+  }
+
+  static DateTime justDay(DateTime origin) {
+    return origin.subtract(Duration(
+        days: 0,
+        hours: origin.hour,
+        minutes: origin.minute,
+        seconds: origin.second,
+        milliseconds: origin.millisecond,
+        microseconds: origin.microsecond
+    ));
+  }
+
+  static DateTime first(DateTime a, DateTime b) {
+    return a.isBefore(b) ? a : b;
+  }
+
+  static final List<String> months =
+  [
+    "Janeiro" , "Fevereiro", "Março"  , "Abril"   ,
+    "Maio"    , "Junho"    , "Julho"  , "Agosto"  ,
+    "Setembro", "Outubro"  , "Nomebro", "Dezembro",
+  ];
+
+  static String month(DateTime date) {
+    return '${months[date.month - 1]} / ${date.year}';
+  }
+
+  static DateTime weekStart(DateTime date) {
+    return date.subtract(
+        Duration(days: date.weekday - 1)
+    );
+  }
+
+  static DateTime weekEnd(DateTime date) {
+    return date.add(
+      Duration(
+        days: 6 - date.weekday + 1,
+        hours: 23,
+      )
+    );
+  }
+
+  static bool between(DateTime date, DateTime start, DateTime end) {
+    bool isEdge = date == start || date == end;
+
+    bool isInside = date.isAfter(start)
+        && date.isBefore(end);
+
+    return isInside || isEdge;
+  }
 }
