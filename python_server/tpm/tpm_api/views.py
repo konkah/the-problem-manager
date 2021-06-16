@@ -1,6 +1,7 @@
 from .models import Period, Registration
 from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import action
+from rest_framework.response import Response
 from tpm_api.serializers import PeriodSerializer, RegistrationSerializer
 
 
@@ -10,7 +11,21 @@ class PeriodViewSet(viewsets.ModelViewSet):
     """
     queryset = Period.objects.all().order_by('-start')
     serializer_class = PeriodSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def list(self, request):
+        if request.user.is_superuser:
+            return super(PeriodViewSet, self).list(request)
+
+        registration = Registration.objects.get(user_id=request.user.id)
+        periodList = self.queryset.filter(registration_id=registration.id)
+
+        result = []
+
+        for period in periodList:
+            result.append(PeriodSerializer(period).data)
+
+        return Response(result)
 
 class RegistrationViewSet(viewsets.ModelViewSet):
     """
