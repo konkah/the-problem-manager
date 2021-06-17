@@ -28,7 +28,7 @@ class TPM {
     } while (last.isBefore(DateTime.now()));
 
     this.canCalculate = true;
-    this.start = last.subtract(Duration(days: 14));
+    this.start = last.subtract(Duration(days: 13));
     this.end = last;
   }
 }
