@@ -6,7 +6,7 @@ import '../controller/manage_db/manage_db_state.dart';
 import '../controller/monitor_db/monitor_db_bloc.dart';
 import '../controller/monitor_db/monitor_db_state.dart';
 
-import 'common.dart';
+import '../helper/common.dart';
 import 'loggedIn/loggedIn.dart';
 import 'loggedOut/loggedOut.dart';
 

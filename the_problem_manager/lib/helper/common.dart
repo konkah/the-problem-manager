@@ -8,7 +8,7 @@ class Common {
   static MaterialColor mainColor = Colors.indigo;
   static MaterialColor tpmColor = Colors.red;
 
-  static Text title(String message) {
+  static Widget title(String message) {
     return Text(message,
       style: TextStyle(
         fontSize: 20,
@@ -18,7 +18,7 @@ class Common {
     );
   }
 
-  static Divider divider() {
+  static Widget divider() {
     return Divider(
       thickness: 3,
       color: Colors.blueGrey,
@@ -26,7 +26,7 @@ class Common {
     );
   }
 
-  static Divider dividerTransparent() {
+  static Widget dividerTransparent() {
     return Divider(
       thickness: 3,
       color: Colors.transparent,

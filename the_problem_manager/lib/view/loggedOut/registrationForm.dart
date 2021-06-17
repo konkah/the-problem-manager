@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../controller/manage_db/manage_db_event.dart';
 import '../../model/registration.dart';
 
-import '../common.dart';
+import '../../helper/common.dart';
 
 class RegistrationForm extends StatefulWidget {
   @override

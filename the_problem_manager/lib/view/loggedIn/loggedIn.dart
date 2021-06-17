@@ -5,7 +5,7 @@ import '../../controller/manage_db/manage_db_bloc.dart';
 import '../../controller/manage_db/manage_db_state.dart';
 
 import '../about.dart';
-import '../common.dart';
+import '../../helper/common.dart';
 import 'firstScreen.dart';
 import 'periodForm.dart';
 import 'periodList.dart';

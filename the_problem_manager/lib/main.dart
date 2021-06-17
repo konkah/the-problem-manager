@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'model/DatabaseLocalServer.dart';
-import 'view/common.dart';
+import 'helper/common.dart';
 import 'controller/manage_db/manage_db_bloc.dart';
 import 'controller/monitor_db/monitor_db_bloc.dart';
 import 'view/authWidget.dart';
