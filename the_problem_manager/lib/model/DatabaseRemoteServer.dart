@@ -69,7 +69,7 @@ class DatabaseRemoteServer {
     return response.data.toString();
   }
 
-  Future<bool> register(Registration registration) async {
+  Future<String> register(Registration registration) async {
     Response response = await _dio.post(
         _registrationUrl,
         options: await options(),
@@ -81,12 +81,13 @@ class DatabaseRemoteServer {
       _recordLogin(
         User.fromRegistration(registration)
       );
+      return null;
     }
 
-    return response.statusCode < 400;
+    return response.data.toString();
   }
 
-  Future<bool> login(User user) async {
+  Future<String> login(User user) async {
     Response response = await _dio.get(
         _registrationUrl + "/test",
         options: await optionsByUser(user),
@@ -94,9 +95,10 @@ class DatabaseRemoteServer {
 
     if (response.statusCode < 400) {
       _recordLogin(user);
+      return null;
     }
 
-    return response.statusCode < 400;
+    return response.data.toString();
   }
 
   Future<void> _recordLogin(User user) async {

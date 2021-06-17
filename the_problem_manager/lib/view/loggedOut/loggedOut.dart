@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../controller/manage_db/manage_db_bloc.dart';
-import '../controller/manage_db/manage_db_state.dart';
-
-import 'about.dart';
-import 'common.dart';
+import '../about.dart';
 import 'loginForm.dart';
 import 'registrationForm.dart';
 
@@ -25,23 +20,14 @@ class LoggedOut extends StatelessWidget {
 
   Scaffold buildScreen() {
     return Scaffold(
-      body: BlocListener<ManageBloc, ManageState>(
-        listener: (context, state) {
-          if (state is LoginState) {
-            if (!state.worked) {
-              Common.showMessage(context, state.message);
-            }
-          }
-        },
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: TabBarView(
-            children: [
-              RegistrationForm(),
-              LoginForm(),
-              About(),
-            ],
-          ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: TabBarView(
+          children: [
+            RegistrationForm(),
+            LoginForm(),
+            About(),
+          ],
         ),
       ),
       appBar: AppBar(

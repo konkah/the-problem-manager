@@ -1,6 +1,13 @@
+import '../../model/user.dart';
+
 class ManageState {
   String message;
   ManageState({this.message});
+}
+
+class LoginState extends ManageState {
+  User user;
+  LoginState({this.user}) : super(message: "Dados inconsistentes");
 }
 
 class InsertState extends ManageState {
@@ -13,11 +20,4 @@ class DeleteState extends ManageState {
 
 class ErrorState extends ManageState {
   ErrorState(String message) : super(message: message);
-}
-
-class LoginState extends ManageState {
-  bool worked;
-  String email;
-  String password;
-  LoginState({this.worked, this.email, this.password}) : super(message: "Dados inconsistentes");
 }

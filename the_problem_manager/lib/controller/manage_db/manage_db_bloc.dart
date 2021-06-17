@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 
+import '../../model/user.dart';
 import '../../model/DatabaseRemoteServer.dart';
 
 import 'manage_db_event.dart';
@@ -12,28 +13,33 @@ class ManageBloc extends Bloc<ManageEvent, ManageState>{
   Stream<ManageState> mapEventToState(ManageEvent event) async* {
     var db = DatabaseRemoteServer.helper;
 
+    String error;
+
+    if (event is RegistrationEvent) {
+      error = await db.register(event.registration);
+      if (error == null)
+        yield LoginState(user: User.fromRegistration(event.registration));
+    }
+
+    if (event is LoginEvent) {
+      error = await db.login(event.user);
+      if (error == null)
+        yield LoginState(user: event.user);
+    }
+
     if (event is InsertEvent) {
-      var error = await db.insertPeriod(event.period);
+      error = await db.insertPeriod(event.period);
       if (error == null)
         yield InsertState();
-      else
-        yield ErrorState(error);
+    }
 
-    } else if (event is DeleteEvent) {
-      var error = await db.deletePeriod(event.id);
-
+    if (event is DeleteEvent) {
+      String error = await db.deletePeriod(event.id);
       if (error == null)
         yield DeleteState();
-      else
-        yield ErrorState(error);
-
-    } else if (event is RegistrationEvent) {
-      bool registered = await db.register(event.registration);
-      yield LoginState(worked: registered);
-
-    } else if (event is LoginEvent) {
-      bool loggedIn = await db.login(event.user);
-      yield LoginState(worked: loggedIn);
     }
+
+    if (error != null)
+      yield ErrorState(error);
   }
 }

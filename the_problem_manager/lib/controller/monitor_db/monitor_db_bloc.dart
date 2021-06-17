@@ -25,23 +25,31 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
     _subscriptionLocal =
       DatabaseLocalServer.helper.stream.listen((response) {
         User user = response;
-        add(LoginEvent(user: user));
+        add(StartAuthEvent(user: user));
       });
   }
 
   @override
   Stream<MonitorState> mapEventToState(MonitorEvent event) async* {
+    if (event is StartAuthEvent) {
+      yield StartAuthState(user: event.user);
+      yield await mapToNewPeriodListState();
+    }
+
     if (event is UpdateListEvent) {
-      yield PeriodListState(periodList: event.periodList);
-    } else if (event is AskNewListEvent) {
-      yield await getNewList();
-    } else if (event is LoginEvent) {
-      yield LoginState(user: event.user);
-      yield await getNewList();
+      yield mapToPeriodListState(event);
+    }
+
+    if (event is AskNewListEvent) {
+      yield await mapToNewPeriodListState();
     }
   }
 
-  Future<PeriodListState> getNewList() async {
+  PeriodListState mapToPeriodListState(UpdateListEvent event){
+    return PeriodListState(periodList: event.periodList);
+  }
+
+  Future mapToNewPeriodListState() async {
     var response = await DatabaseRemoteServer.helper.getPeriodList();
     List<Period> periodList = response;
     return PeriodListState(periodList: periodList);

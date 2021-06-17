@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../controller/manage_db/manage_db_event.dart';
-import '../model/user.dart';
+import '../../controller/manage_db/manage_db_event.dart';
+import '../../model/user.dart';
 
-import 'common.dart';
+import '../common.dart';
 
 class LoginForm extends StatefulWidget {
   @override
