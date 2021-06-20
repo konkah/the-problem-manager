@@ -60,13 +60,15 @@ class DatabaseLocalServer {
   }
 
   Future<void> set(User model) async {
-    Database db = await this.database;
+    clear();
 
-    await db.delete(
-        User.label,
-        where: '${User.propEmail} = ?', whereArgs: [model.email]
-    );
+    Database db = await this.database;
     await db.insert(User.label, model.toMap());
+  }
+
+  Future<void> clear() async {
+    Database db = await this.database;
+    await db.delete(User.label);
   }
 
   static StreamController _controller;

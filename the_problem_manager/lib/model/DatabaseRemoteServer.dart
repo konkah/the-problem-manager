@@ -30,6 +30,8 @@ class DatabaseRemoteServer {
       response.data.forEach(
         (e) => periodList.add(Period.fromMap(e))
       );
+    } else if (response.statusCode == 403) {
+      await DatabaseLocalServer.db.clear();
     } else {
       print(response.data);
     }
