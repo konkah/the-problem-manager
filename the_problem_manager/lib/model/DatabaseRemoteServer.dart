@@ -12,7 +12,7 @@ class DatabaseRemoteServer {
   static DatabaseRemoteServer api = DatabaseRemoteServer._createInstance();
   DatabaseRemoteServer._createInstance();
 
-  static String _databaseUrl = "http://192.168.0.13:8000/";
+  static String _databaseUrl = "http://192.168.0.16:8000/";
   static String _periodUrl = _databaseUrl + Period.label + "/";
   static String _registrationUrl = _databaseUrl + Registration.label + "/";
 
