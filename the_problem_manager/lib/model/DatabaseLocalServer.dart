@@ -7,7 +7,7 @@ import 'package:sqflite/sqflite.dart';
 import 'user.dart';
 
 class DatabaseLocalServer {
-  static DatabaseLocalServer helper = DatabaseLocalServer._createInstance();
+  static DatabaseLocalServer db = DatabaseLocalServer._createInstance();
   DatabaseLocalServer._createInstance();
 
   static Database _database;

@@ -9,7 +9,7 @@ import 'view/authWidget.dart';
 
 void main() {
   runApp(MyApp());
-  DatabaseLocalServer.helper.check();
+  DatabaseLocalServer.db.check();
 }
 
 class MyApp extends StatelessWidget {

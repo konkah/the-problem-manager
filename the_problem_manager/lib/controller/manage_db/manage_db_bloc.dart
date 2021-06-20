@@ -11,7 +11,7 @@ class ManageBloc extends Bloc<ManageEvent, ManageState>{
 
   @override
   Stream<ManageState> mapEventToState(ManageEvent event) async* {
-    var db = DatabaseRemoteServer.helper;
+    var db = DatabaseRemoteServer.api;
 
     String error;
 

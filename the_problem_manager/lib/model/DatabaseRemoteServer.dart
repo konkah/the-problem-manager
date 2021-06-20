@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:socket_io_client/socket_io_client.dart';
 import 'DatabaseLocalServer.dart';
 import 'registration.dart';
 import 'period.dart';
@@ -10,7 +9,7 @@ import 'period.dart';
 import 'user.dart';
 
 class DatabaseRemoteServer {
-  static DatabaseRemoteServer helper = DatabaseRemoteServer._createInstance();
+  static DatabaseRemoteServer api = DatabaseRemoteServer._createInstance();
   DatabaseRemoteServer._createInstance();
 
   static String _databaseUrl = "http://192.168.0.13:8000/";
@@ -39,7 +38,7 @@ class DatabaseRemoteServer {
   }
 
   Future<String> insertPeriod(Period model) async {
-    User user = await DatabaseLocalServer.helper.get();
+    User user = await DatabaseLocalServer.db.get();
 
     Response response = await _dio.post(
       _periodUrl,
@@ -102,11 +101,11 @@ class DatabaseRemoteServer {
   }
 
   Future<void> _recordLogin(User user) async {
-    await DatabaseLocalServer.helper.set(user);
+    await DatabaseLocalServer.db.set(user);
   }
 
   Future<Options> options() async {
-    User user = await DatabaseLocalServer.helper.get();
+    User user = await DatabaseLocalServer.db.get();
     return await optionsByUser(user);
   }
 

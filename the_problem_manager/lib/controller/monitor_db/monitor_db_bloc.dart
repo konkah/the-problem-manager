@@ -17,13 +17,13 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
     add(AskNewListEvent());
 
     _subscriptionRemote =
-      DatabaseRemoteServer.helper.stream.listen((response) {
+      DatabaseRemoteServer.api.stream.listen((response) {
         List<Period> periodList = response;
         add(UpdateListEvent(periodList: periodList));
       });
 
     _subscriptionLocal =
-      DatabaseLocalServer.helper.stream.listen((response) {
+      DatabaseLocalServer.db.stream.listen((response) {
         User user = response;
         add(StartAuthEvent(user: user));
       });
@@ -50,7 +50,7 @@ class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
   }
 
   Future mapToNewPeriodListState() async {
-    var response = await DatabaseRemoteServer.helper.getPeriodList();
+    var response = await DatabaseRemoteServer.api.getPeriodList();
     List<Period> periodList = response;
     return PeriodListState(periodList: periodList);
   }
