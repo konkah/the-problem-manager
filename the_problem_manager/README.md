@@ -2,6 +2,22 @@
 
 App to help people to manage PMS.
 
+## Update dependencies
+
+- run `flutter pub get`
+
+## Change Icon
+
+- change the icon at assets/images/icone-ciclo.png
+- run `flutter pub run flutter_launcher_icons:main`
+- stop and relaunch app
+
+## Change Name
+
+- change the name at pubspec.yaml, below `flutter_launcher_name`
+- run `flutter pub run flutter_launcher_name:main`
+- stop and relaunch app
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

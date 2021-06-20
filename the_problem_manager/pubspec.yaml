@@ -42,7 +42,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_launcher_icons: "^0.9.0"
+  flutter_launcher_name: "^0.0.1"
+  flutter_launcher_icons: "^0.8.1"
+
+flutter_launcher_name:
+  name: "TPM"
 
 flutter_icons:
   image_path: "assets/images/icone-ciclo.png"
