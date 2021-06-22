@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../controller/manage_db/manage_db_event.dart';
 import '../../controller/manage_db/manage_db_bloc.dart';
 import '../../controller/manage_db/manage_db_state.dart';
 
@@ -13,19 +14,27 @@ import 'periodList.dart';
 class LoggedIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return buildTabController();
+    return buildTabController(context);
   }
 
-  DefaultTabController buildTabController() {
+  DefaultTabController buildTabController(BuildContext context) {
     return DefaultTabController(
         length: 4,
         initialIndex: 0,
-        child: buildScreen(),
+        child: buildScreen(context),
     );
   }
 
-  Scaffold buildScreen() {
+  Scaffold buildScreen(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          BlocProvider.of<ManageBloc>(context)
+              .add(LogoutEvent());
+        },
+        tooltip: "Sair",
+        child: Icon(Icons.logout),
+      ),
       body: BlocListener<ManageBloc, ManageState>(
         listener: (context, state) {
           if (state is InsertState) {

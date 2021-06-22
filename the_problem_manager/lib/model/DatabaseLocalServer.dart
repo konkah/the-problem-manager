@@ -60,13 +60,13 @@ class DatabaseLocalServer {
   }
 
   Future<void> set(User model) async {
-    clear();
+    await delete();
 
     Database db = await this.database;
     await db.insert(User.label, model.toMap());
   }
 
-  Future<void> clear() async {
+  Future<void> delete() async {
     Database db = await this.database;
     await db.delete(User.label);
   }

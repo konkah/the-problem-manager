@@ -10,6 +10,10 @@ class LoginState extends ManageState {
   LoginState({this.user}) : super(message: "Dados inconsistentes");
 }
 
+class LogoutState extends ManageState {
+  LogoutState() : super(message: "Até logo!");
+}
+
 class InsertState extends ManageState {
   InsertState() : super(message: "Dados inseridos com sucesso!");
 }

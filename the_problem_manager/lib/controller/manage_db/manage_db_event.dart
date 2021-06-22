@@ -14,6 +14,9 @@ class LoginEvent extends ManageEvent {
   LoginEvent({this.user});
 }
 
+class LogoutEvent extends ManageEvent {
+}
+
 class InsertEvent extends ManageEvent {
   Period period;
   InsertEvent({this.period});

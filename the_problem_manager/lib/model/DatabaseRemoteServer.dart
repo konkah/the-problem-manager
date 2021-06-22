@@ -31,7 +31,7 @@ class DatabaseRemoteServer {
         (e) => periodList.add(Period.fromMap(e))
       );
     } else if (response.statusCode == 403) {
-      await DatabaseLocalServer.db.clear();
+      await DatabaseLocalServer.db.delete();
     } else {
       print(response.data);
     }

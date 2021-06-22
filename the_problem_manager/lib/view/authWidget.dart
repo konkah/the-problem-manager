@@ -40,6 +40,11 @@ class AuthWidgetState extends State<AuthWidget> {
       setLogin(state.user);
     }
 
+    if (state is LogoutState) {
+      setLogin(null);
+      Common.showMessage(context, state.message);
+    }
+
     if (state is ErrorState) {
       Common.showMessage(context, state.message);
     }
@@ -53,7 +58,7 @@ class AuthWidgetState extends State<AuthWidget> {
 
   void setLogin(user) {
     return setState(() {
-      this.screen = 1;
+      this.screen = user == null ? 0 : 1;
     });
   }
 }
