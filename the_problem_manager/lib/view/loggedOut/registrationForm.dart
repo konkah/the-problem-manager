@@ -35,7 +35,7 @@ class RegistrationFormState extends State {
             passwordField(),
             retypePasswordField(),
             Common.dividerTransparent(),
-            Common.title("sobre a pessoa que menstrua..."),
+            Common.title("Quem menstrua?"),
             Common.divider(),
             personOptions(),
             Common.submitter(
@@ -56,8 +56,8 @@ class RegistrationFormState extends State {
         registration.name = inValue;
       },
       decoration: InputDecoration(
-        hintText: "como quer te chamemos?",
-        labelText: "nome que prefere que te chamem",
+        hintText: "Nome completo ou primeiro nome",
+        labelText: "Qual o seu nome?",
       ),
     );
   }
@@ -76,9 +76,9 @@ class RegistrationFormState extends State {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         personOption(true),
-        Text("sou eu"),
+        Text("Eu"),
         personOption(false),
-        Text("outra pessoa"),
+        Text("Outra pessoa"),
       ],
     );
   }
