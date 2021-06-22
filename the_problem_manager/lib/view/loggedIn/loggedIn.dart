@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../controller/monitor_db/monitor_db_bloc.dart';
+import '../../controller/monitor_db/monitor_db_event.dart';
 import '../../controller/manage_db/manage_db_event.dart';
 import '../../controller/manage_db/manage_db_bloc.dart';
 import '../../controller/manage_db/manage_db_state.dart';
@@ -31,6 +33,8 @@ class LoggedIn extends StatelessWidget {
         onPressed: () {
           BlocProvider.of<ManageBloc>(context)
               .add(LogoutEvent());
+          BlocProvider.of<MonitorBloc>(context)
+              .add(AskNewListEvent());
         },
         tooltip: "Sair",
         child: Icon(Icons.logout),

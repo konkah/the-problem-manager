@@ -19,7 +19,14 @@ class PeriodForm extends StatefulWidget {
 class PeriodFormState extends State {
   @override
   Widget build(BuildContext context) {
-    return nameForm();
+    return BlocListener<ManageBloc, ManageState>(
+      listener: (context, state) {
+        if (state is InsertEvent) {
+          formKey.currentState.reset();
+        }
+      },
+      child: nameForm()
+    );
   }
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();

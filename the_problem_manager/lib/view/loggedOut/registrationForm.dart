@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../controller/manage_db/manage_db_bloc.dart';
+import '../../controller/manage_db/manage_db_state.dart';
 import '../../controller/manage_db/manage_db_event.dart';
 import '../../model/registration.dart';
-
 import '../../helper/common.dart';
 
 class RegistrationForm extends StatefulWidget {
@@ -15,7 +17,14 @@ class RegistrationForm extends StatefulWidget {
 class RegistrationFormState extends State {
   @override
   Widget build(BuildContext context) {
-    return nameForm();
+    return BlocListener<ManageBloc, ManageState>(
+      listener: (context, state) {
+        if (state is LoginEvent) {
+          formKey.currentState.reset();
+        }
+      },
+      child: nameForm()
+    );
   }
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
