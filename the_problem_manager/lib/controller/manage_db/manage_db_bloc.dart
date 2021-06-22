@@ -15,7 +15,7 @@ class ManageBloc extends Bloc<ManageEvent, ManageState>{
     var api = DatabaseRemoteServer.api;
     var db = DatabaseLocalServer.db;
 
-    String error;
+    dynamic error;
 
     if (event is RegistrationEvent) {
       error = await api.register(event.registration);
@@ -41,7 +41,7 @@ class ManageBloc extends Bloc<ManageEvent, ManageState>{
     }
 
     if (event is DeleteEvent) {
-      String error = await api.deletePeriod(event.id);
+      error = await api.deletePeriod(event.id);
       if (error == null)
         yield DeleteState();
     }

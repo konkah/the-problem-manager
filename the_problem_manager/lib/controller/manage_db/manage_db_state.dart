@@ -1,7 +1,7 @@
 import '../../model/user.dart';
 
 class ManageState {
-  String message;
+  dynamic message;
   ManageState({this.message});
 }
 
@@ -23,5 +23,5 @@ class DeleteState extends ManageState {
 }
 
 class ErrorState extends ManageState {
-  ErrorState(String message) : super(message: message);
+  ErrorState(dynamic message) : super(message: message);
 }

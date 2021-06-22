@@ -46,7 +46,14 @@ class AuthWidgetState extends State<AuthWidget> {
     }
 
     if (state is ErrorState) {
-      Common.showMessage(context, state.message);
+      if (state.message.toString().startsWith("<")) {
+        Common.showMessage(context, "Erro ao tentar se conectar ao sistema");
+        print(state.message);
+      } else if (state.message is Map<String, dynamic>) {
+        Common.showMessage(context, state.message["detail"]);
+      } else {
+        Common.showMessage(context, state.message.toString());
+      }
     }
   }
 

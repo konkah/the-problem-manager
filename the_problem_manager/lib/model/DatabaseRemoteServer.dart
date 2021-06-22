@@ -39,7 +39,7 @@ class DatabaseRemoteServer {
     return periodList;
   }
 
-  Future<String> insertPeriod(Period model) async {
+  Future<dynamic> insertPeriod(Period model) async {
     User user = await DatabaseLocalServer.db.get();
 
     Response response = await _dio.post(
@@ -53,10 +53,10 @@ class DatabaseRemoteServer {
       return null;
     }
 
-    return response.data.toString();
+    return response.data;
   }
 
-  Future<String> deletePeriod(int id) async {
+  Future<dynamic> deletePeriod(int id) async {
     var response = await _dio.delete(
       _periodUrl + "$id/",
       options: await options()
@@ -67,10 +67,10 @@ class DatabaseRemoteServer {
       return null;
     }
 
-    return response.data.toString();
+    return response.data;
   }
 
-  Future<String> register(Registration registration) async {
+  Future<dynamic> register(Registration registration) async {
     Response response = await _dio.post(
         _registrationUrl,
         options: await options(),
@@ -85,12 +85,12 @@ class DatabaseRemoteServer {
       return null;
     }
 
-    return response.data.toString();
+    return response.data;
   }
 
-  Future<String> login(User user) async {
+  Future<dynamic> login(User user) async {
     Response response = await _dio.get(
-        _registrationUrl + "/test",
+        _registrationUrl + "test",
         options: await optionsByUser(user),
     );
 
@@ -99,7 +99,7 @@ class DatabaseRemoteServer {
       return null;
     }
 
-    return response.data.toString();
+    return response.data;
   }
 
   Future<void> _recordLogin(User user) async {
