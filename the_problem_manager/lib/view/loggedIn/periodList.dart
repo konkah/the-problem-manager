@@ -21,15 +21,31 @@ class PeriodList extends StatelessWidget {
           BlocBuilder<MonitorBloc, MonitorState>(
             builder: (context, state) {
               if (state is PeriodListState) {
-                return table(context, state.periodList);
-              } else {
-                return table(context, []);
+                if (state.periodList.isNotEmpty) {
+                  return buildBody(context, state);
+                }
               }
+              return Common.subtitle("Não há menstruações cadastradas");
             }
           ),
         ],
       ),
     );
+  }
+
+  Widget buildBody(BuildContext context, PeriodListState state) {
+    Widget list = table(context, state.periodList);
+
+    if (state.periodList.length == 1) {
+      return Column(
+        children: [
+          Common.subtitle("São necessárias ao menos duas menstruações para calcular a TPM"),
+          list,
+        ],
+      );
+    }
+
+    return list;
   }
 
   Widget table(BuildContext context, List<Period> periodList) {

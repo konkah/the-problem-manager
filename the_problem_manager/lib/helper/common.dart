@@ -18,6 +18,17 @@ class Common {
     );
   }
 
+  static Widget subtitle(String message) {
+    return Text(
+      message,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 18,
+        color: tpmColor,
+      ),
+    );
+  }
+
   static Widget divider() {
     return Divider(
       thickness: 3,

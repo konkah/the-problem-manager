@@ -23,7 +23,7 @@ class Calendar extends StatelessWidget{
       }
     }
 
-    return buildTitle("Sem dados ainda");
+    return buildSubtitle("São necessárias ao menos duas menstruações cadastradas para calcular a próxima TPM");
   }
 
   Widget buildCalendar(TPM tpm) {
@@ -78,19 +78,13 @@ class Calendar extends StatelessWidget{
   }
 
   Widget buildMonthTitle(DateTime date) {
-    return buildTitle(Date.month(date));
+    return buildSubtitle(Date.month(date));
   }
 
-  Widget buildTitle(String title) {
+  Widget buildSubtitle(String title) {
     return Padding(
       padding: EdgeInsets.all(16.0),
-      child: Text(
-        title,
-        style: TextStyle(
-          color: Common.tpmColor,
-          fontSize: 18
-        ),
-      ),
+      child: Common.subtitle(title),
     );
   }
 
