@@ -19,7 +19,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     def save_with_parent(self):
         data = self.validated_data
-        print(data)
 
         user = User.objects.create_user(
             data['email'],
