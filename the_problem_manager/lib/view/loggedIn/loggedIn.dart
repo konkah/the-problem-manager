@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../controller/monitor_db/monitor_db_bloc.dart';
 import '../../controller/monitor_db/monitor_db_event.dart';
+import '../../controller/monitor_db/monitor_db_state.dart';
 import '../../controller/manage_db/manage_db_event.dart';
 import '../../controller/manage_db/manage_db_bloc.dart';
 import '../../controller/manage_db/manage_db_state.dart';
@@ -40,26 +41,10 @@ class LoggedIn extends StatelessWidget {
         child: Icon(Icons.logout),
       ),
       body: BlocListener<ManageBloc, ManageState>(
-        listener: (context, state) {
-          if (state is InsertState) {
-            Common.showMessage(context, state.message);
-            DefaultTabController.of(context).animateTo(1);
-          }
-
-          if (state is DeleteState) {
-            Common.showMessage(context, state.message);
-          }
-        },
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: TabBarView(
-            children: [
-              FirstScreen(),
-              PeriodList(),
-              PeriodForm(),
-              About(),
-            ],
-          ),
+        listener: listenToManage,
+        child: BlocListener<MonitorBloc, MonitorState>(
+          listener: listenToMonitor,
+          child: buildBody()
         ),
       ),
       appBar: AppBar(
@@ -70,6 +55,39 @@ class LoggedIn extends StatelessWidget {
           Tab(icon: Icon(Icons.add_box_rounded)),
           Tab(icon: Icon(Icons.report_rounded))
         ]),
+      ),
+    );
+  }
+
+  void listenToManage(BuildContext context, ManageState state) {
+    if (state is InsertState) {
+      Common.showMessage(context, state.message);
+      DefaultTabController.of(context).animateTo(1);
+    }
+
+    if (state is DeleteState) {
+      Common.showMessage(context, state.message);
+    }
+  }
+
+  void listenToMonitor(BuildContext context, MonitorState state) {
+    if (state is PeriodListState) {
+      if (state.periodList.isEmpty) {
+        DefaultTabController.of(context).animateTo(2);
+      }
+    }
+  }
+
+  Padding buildBody() {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: TabBarView(
+        children: [
+          FirstScreen(),
+          PeriodList(),
+          PeriodForm(),
+          About(),
+        ],
       ),
     );
   }
