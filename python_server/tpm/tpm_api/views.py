@@ -27,6 +27,12 @@ class PeriodViewSet(viewsets.ModelViewSet):
 
         return Response(result)
 
+    def create(self, request):
+        registration = Registration.objects.get(user_id=request.user.id)
+        request.data["registration"] = registration.id
+
+        return super(PeriodViewSet, self).create(request)
+
 class RegistrationViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
